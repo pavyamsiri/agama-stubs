@@ -1,0 +1,75 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agama-stubs"
+version = "1.0.0"
+description = "Type stubs for Agama (Action-based galaxy modelling architecture)"
+readme = "README.md"
+requires-python = ">=3.13"
+license = { text = "MIT" }
+authors = [
+    { name = "Pavadol Yamsiri", email = "pavyamsiri@gmail.com" }
+]
+dependencies = ["optype[numpy]>=0.14.0,<0.16"]
+
+classifiers = [
+    "Typing :: Stubs Only",
+]
+
+[project.optional-dependencies]
+dev = [
+    "basedpyright",
+    "mypy",
+    "pytest",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agama-stubs"]
+
+[tool.pyright]
+exclude = [
+  "**/__pycache__",
+  "**/.mypy_cache",
+  "**/.ruff_cache",
+  "**/.tox",
+  "**/.venv",
+]
+ignore = [".venv"]
+stubPath = "."
+pythonPlatform = "All"
+typeCheckingMode = "strict"
+deprecateTypingAliases = true
+enableReachabilityAnalysis = false
+enableTypeIgnoreComments = false
+reportCallInDefaultInitializer = true
+reportImplicitOverride = true
+reportImportCycles = true
+reportMissingSuperCall = true
+reportPropertyTypeMismatch = false
+reportUninitializedInstanceVariable = true
+reportUnnecessaryTypeIgnoreComment = true
+reportUnusedCallResult = true
+
+# type-checkers should type-check; linters should lint
+reportImplicitStringConcatenation = false
+reportPrivateImportUsage = false
+reportPrivateUsage = false
+
+# basedpyright
+failOnWarnings = true
+reportIgnoreCommentWithoutRule = true
+reportImplicitAbstractClass = false
+reportImplicitRelativeImport = true
+reportInvalidCast = true
+reportPrivateLocalImportUsage = true
+reportUnannotatedClassAttribute = false
+strictGenericNarrowing = false
+
+[[tool.pyright.executionEnvironments]]
+root = "tests"
+reportInvalidStubStatement = false
+reportUnusedCallResult = false
+reportUnusedExpression = false
+
