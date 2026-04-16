@@ -1,11 +1,45 @@
-from collections.abc import Sequence
-from typing import Any, Final, overload
+from collections.abc import Sequence, Callable
+from typing import Any, Final, overload, override
 
 import numpy as np
 from optype import numpy as onp
 
+__all__ = [
+    "ActionFinder",
+    "ActionMapper",
+    "Component",
+    "Density",
+    "DistributionFunction",
+    "G",
+    "GalaxyModel",
+    "Potential",
+    "SelectionFunction",
+    "SelfConsistentModel",
+    "Spline",
+    "Target",
+    "__version__",
+    "actions",
+    "getUnits",
+    "ghMoments",
+    "integrateNdim",
+    "orbit",
+    "readSnapshot",
+    "sampleNdim",
+    "setNumThreads",
+    "setRandomSeed",
+    "setUnits",
+    "solveOpt",
+    "splineApprox",
+    "splineLogDensity",
+    "writeSnapshot",
+]
+
 __version__: Final[str] = "1.0"
 G: Final[float] = 1.0
+
+type _PythonPotential = Callable[
+    [onp.Array2D[np.float64]], onp.Array1D[np.float32 | np.float64 | np.bool_]
+]
 
 class Density:
     @overload
@@ -41,17 +75,15 @@ class Density:
         rotation: float | str | None = None,
         scale: tuple[float, float] | str | None = None,
     ) -> None: ...
-
     def density(
         self,
         xyz: tuple[float, float, float] | onp.ToJustFloat64_2D,
         t: float | onp.ToJustFloat64_1D | None = None,
     ) -> float | onp.Array1D[np.float64]: ...
-
-    def projectedDensity(self, xyz: float | onp.ToJustFloat64_1D) -> float | onp.Array1D[np.float64]: ...
-
+    def projectedDensity(
+        self, xyz: float | onp.ToJustFloat64_1D
+    ) -> float | onp.Array1D[np.float64]: ...
     def export(self, filename: str) -> None: ...
-
     def sample(
         self,
         n: int,
@@ -59,10 +91,11 @@ class Density:
         beta: float | None = None,
         kappa: float | None = None,
     ) -> tuple[list[list[float]], list[float]]: ...
-
     def totalMass(self) -> float: ...
     def enclosedMass(self, r: float | Sequence[float]) -> float | list[float]: ...
-    def principalAxes(self, r: float | onp.ToJustFloat64_1D | None = None) -> tuple[list[float], list[float]]: ...
+    def principalAxes(
+        self, r: float | onp.ToJustFloat64_1D | None = None
+    ) -> tuple[list[float], list[float]]: ...
     def name(self) -> str: ...
     def __getitem__(self, index: int) -> "Density | Potential": ...
     def __len__(self) -> int: ...
@@ -74,8 +107,12 @@ class Potential(Density):
     def force(self, *args: Any, **kwargs: Any) -> Any: ...
 
 class ActionFinder:
-    def __init__(self, potential: Any, interp: bool = False) -> None: ...
+    def __init__(
+        self, potential: Potential | _PythonPotential, interp: bool = False
+    ) -> None: ...
     def __call__(self, *args: Any, **kwargs: Any) -> Any: ...
+    @override
+    def __repr__(self) -> str: ...
 
 class ActionMapper: ...
 class Component: ...
@@ -88,20 +125,18 @@ class Target: ...
 
 def readSnapshot(filename: str, /) -> Any: ...
 def writeSnapshot(filename: str, particles: Any, format: str = "t") -> None: ...
-
 def setUnits(**kwargs: Any) -> None: ...
 def getUnits() -> dict[str, float]: ...
 def setRandomSeed(seed: int) -> None: ...
-
 def sampleNdim(fnc: Any, nsamples: int, **kwargs: Any) -> Any: ...
 def integrateNdim(fnc: Any, nsamples: int, **kwargs: Any) -> Any: ...
 def orbit(**kwargs: Any) -> Any: ...
-
 def splineApprox(knots: Any, x: Any, y: Any, **kwargs: Any) -> Any: ...
 def splineLogDensity(knots: Any, x: Any, **kwargs: Any) -> Any: ...
 def solveOpt(**kwargs: Any) -> Any: ...
-
-def ghMoments(degree: int, gridv: Any, matrix: Any, ghorder: int, **kwargs: Any) -> Any: ...
+def ghMoments(
+    degree: int, gridv: Any, matrix: Any, ghorder: int, **kwargs: Any
+) -> Any: ...
 
 class setNumThreads:
     def __init__(self, num_threads: int) -> None: ...
@@ -109,33 +144,3 @@ class setNumThreads:
     def __exit__(self, *args: Any) -> None: ...
 
 actions: ActionFinder
-
-__all__ = [
-    "ActionFinder",
-    "ActionMapper",
-    "Component",
-    "Density",
-    "DistributionFunction",
-    "G",
-    "GalaxyModel",
-    "Potential",
-    "SelectionFunction",
-    "SelfConsistentModel",
-    "Spline",
-    "Target",
-    "__version__",
-    "actions",
-    "getUnits",
-    "ghMoments",
-    "integrateNdim",
-    "orbit",
-    "readSnapshot",
-    "sampleNdim",
-    "setNumThreads",
-    "setRandomSeed",
-    "setUnits",
-    "solveOpt",
-    "splineApprox",
-    "splineLogDensity",
-    "writeSnapshot",
-]
