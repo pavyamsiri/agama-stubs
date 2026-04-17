@@ -288,7 +288,55 @@ class Component:
     @property
     def df(self) -> DistributionFunction | None: ...
 
-class DistributionFunction: ...
+class DistributionFunction:
+    # x and y values are given
+    # - der is optional
+    # - quintic is optional
+    @overload
+    def __init__(
+        self,
+        x: onp.ToFloat1D,
+        *,
+        y: onp.ToFloat1D,
+        der: onp.ToFloat1D = ...,
+        quintic: onp.ToBool = ...,
+    ) -> None: ...
+    # x and y values are given
+    # - der is not given
+    # - if quintic is given it must be falsy
+    @overload
+    def __init__(
+        self,
+        x: onp.ToFloat1D,
+        *,
+        y: onp.ToFloat1D,
+        left: onp.ToFloat = ...,
+        right: onp.ToFloat = ...,
+        reg: onp.ToFloat = ...,
+        quintic: onp.ToFalse = ...,
+    ) -> None: ...
+    # Given ampl values
+    @overload
+    def __init__(
+        self,
+        x: onp.ToFloat1D,
+        *,
+        ampl: onp.ToFloat1D,
+    ) -> None: ...
+    # Default overload: Needed for when not explicitly using named arguments
+    @overload
+    def __init__(
+        self,
+        x: onp.ToFloat1D,
+        y: onp.ToFloat1D = ...,
+        der: onp.ToFloat1D = ...,
+        ampl: onp.ToFloat1D = ...,
+        left: onp.ToFloat = ...,
+        right: onp.ToFloat = ...,
+        reg: onp.ToInt = ...,
+        quintic: onp.ToBool = ...,
+    ) -> None: ...
+
 class GalaxyModel: ...
 class SelectionFunction: ...
 class SelfConsistentModel: ...
