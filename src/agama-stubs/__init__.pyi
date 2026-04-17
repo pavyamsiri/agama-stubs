@@ -337,6 +337,40 @@ class DistributionFunction:
         quintic: onp.ToBool = ...,
     ) -> None: ...
 
+    # __call__
+    # Input is single number:
+    # - conv must be spline if given
+    # - can't be given der or ext
+    @overload
+    def __call__(self, x: float | int, *, conv: Spline = ...) -> None: ...
+    # Input is single number:
+    # - if using der or ext then conv can't be given
+    @overload
+    def __call__(
+        self, x: float | int, *, der: onp.ToInt = ..., ext: onp.ToFloat = ...
+    ) -> None: ...
+    # Input is array
+    # - conv must be scalar or array with same shape as `x` or `Spline`
+    @overload
+    def __call__(
+        self, x: onp.ToFloatND, *, conv: onp.ToFloatND | Spline = ...
+    ) -> None: ...
+    # Input is array
+    # - if using der or ext then conv can't be given
+    @overload
+    def __call__(
+        self, x: onp.ToFloatND, *, der: onp.ToInt = ..., ext: onp.ToFloat = ...
+    ) -> None: ...
+    # Fallback overload
+    @overload
+    def __call__(
+        self,
+        x: object,
+        der: onp.ToInt,
+        ext: object,
+        conv: object,
+    ) -> None: ...
+
 class GalaxyModel: ...
 class SelectionFunction: ...
 class SelfConsistentModel: ...
