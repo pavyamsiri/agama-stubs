@@ -37,10 +37,14 @@ __all__ = [
 __version__: Final[str] = "1.0"
 G: Final[float] = 1.0
 
-type _PythonPotential = Callable[
+type _AgamaCallable = Callable[
     [onp.Array2D[np.float64]], onp.Array1D[np.float32 | np.float64 | np.bool_]
 ]
-type _ToPotential = Potential | _PythonPotential
+type _ToPotential = Potential | _AgamaCallable
+type _ToDensity = Density | _AgamaCallable
+type _ToDistributionFunction = (
+    DistributionFunction | _AgamaCallable | Sequence[_ToDistributionFunction]
+)
 
 class Density:
     @overload
@@ -213,7 +217,69 @@ class ActionMapper:
         self, point: onp.Array2D[np.inexact], frequencies: bool = False
     ) -> None: ...
 
-class Component: ...
+class Component:
+    # Only potential
+    @overload
+    def __init__(self, *, potential: _ToPotential) -> None: ...
+    # Potential + density
+    @overload
+    def __init__(
+        self, *, potential: _ToPotential, density: _ToDensity, disklike: bool
+    ) -> None: ...
+    # Spheroidal distribution function with optional density
+    @overload
+    def __init__(
+        self,
+        *,
+        df: _ToDistributionFunction,
+        disklike: Literal[False],
+        density: _ToDensity = ...,
+        rminSph: onp.ToFloat = ...,
+        rmaxSph: onp.ToFloat = ...,
+        sizeRadialSph: onp.ToInt = ...,
+        lmaxAngularSph: onp.ToInt = ...,
+        mmaxAngularSph: onp.ToInt = ...,
+    ) -> None: ...
+    # Disk-like distribution function with optional density
+    @overload
+    def __init__(
+        self,
+        *,
+        df: _ToDistributionFunction,
+        disklike: Literal[True],
+        density: _ToDensity = ...,
+        RminCyl: onp.ToFloat = ...,
+        RmaxCyl: onp.ToFloat = ...,
+        zminCyl: onp.ToFloat = ...,
+        zmaxCyl: onp.ToFloat = ...,
+        sizeRadialCyl: onp.ToInt = ...,
+        sizeVerticalCyl: onp.ToInt = ...,
+        mmaxAngularCyl: onp.ToInt = ...,
+    ) -> None: ...
+    # Spheroidal or disk-like (runtime) distribution function with optional density
+    @overload
+    def __init__(
+        self,
+        *,
+        df: _ToDistributionFunction,
+        disklike: bool,
+        density: _ToDensity = ...,
+        rminSph: onp.ToFloat = ...,
+        rmaxSph: onp.ToFloat = ...,
+        sizeRadialSph: onp.ToInt = ...,
+        lmaxAngularSph: onp.ToInt = ...,
+        mmaxAngularSph: onp.ToInt = ...,
+        RminCyl: onp.ToFloat = ...,
+        RmaxCyl: onp.ToFloat = ...,
+        zminCyl: onp.ToFloat = ...,
+        zmaxCyl: onp.ToFloat = ...,
+        sizeRadialCyl: onp.ToInt = ...,
+        sizeVerticalCyl: onp.ToInt = ...,
+        mmaxAngularCyl: onp.ToInt = ...,
+    ) -> None: ...
+    @override
+    def __repr__(self) -> str: ...
+
 class DistributionFunction: ...
 class GalaxyModel: ...
 class SelectionFunction: ...
