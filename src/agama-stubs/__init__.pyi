@@ -288,7 +288,194 @@ class Component:
     @property
     def df(self) -> DistributionFunction | None: ...
 
-class DistributionFunction: ...
+class DistributionFunction:
+    @overload
+    def __init__(self, *args: _ToDistributionFunction) -> None: ...
+
+    # The DF types
+    # type = DoublePowerLaw
+    # - norm is provided
+    @overload
+    def __init__(
+        self,
+        *,
+        type: Literal["DoublePowerLaw"],
+        norm: onp.ToFloat = ...,
+        J0: onp.ToFloat = ...,
+        Jcutoff: onp.ToFloat = ...,
+        Jphi0: onp.ToFloat = ...,
+        Jcore: onp.ToFloat = ...,
+        slopeIn: onp.ToFloat = ...,
+        slopeOut: onp.ToFloat = ...,
+        steepness: onp.ToFloat = ...,
+        coefJrIn: onp.ToFloat = ...,
+        coefJzIn: onp.ToFloat = ...,
+        coefJrOut: onp.ToFloat = ...,
+        coefJzOut: onp.ToFloat = ...,
+        rotFrac: onp.ToFloat = ...,
+        cutoffStrength: onp.ToFloat = ...,
+    ) -> None: ...
+    # type = DoublePowerLaw
+    # - mass is provided
+    @overload
+    def __init__(
+        self,
+        *,
+        type: Literal["DoublePowerLaw"],
+        mass: onp.ToFloat = ...,
+        J0: onp.ToFloat = ...,
+        Jcutoff: onp.ToFloat = ...,
+        Jphi0: onp.ToFloat = ...,
+        Jcore: onp.ToFloat = ...,
+        slopeIn: onp.ToFloat = ...,
+        slopeOut: onp.ToFloat = ...,
+        steepness: onp.ToFloat = ...,
+        coefJrIn: onp.ToFloat = ...,
+        coefJzIn: onp.ToFloat = ...,
+        coefJrOut: onp.ToFloat = ...,
+        coefJzOut: onp.ToFloat = ...,
+        rotFrac: onp.ToFloat = ...,
+        cutoffStrength: onp.ToFloat = ...,
+    ) -> None: ...
+    # type = Exponential
+    # - norm is provided
+    @overload
+    def __init__(
+        self,
+        *,
+        type: Literal["Exponential"],
+        norm: onp.ToFloat = ...,
+        Jr0: onp.ToFloat = ...,
+        Jz0: onp.ToFloat = ...,
+        Jphi0: onp.ToFloat = ...,
+        addJden: onp.ToFloat = ...,
+        addJvel: onp.ToFloat = ...,
+        coefJr: onp.ToFloat = ...,
+        coefJz: onp.ToFloat = ...,
+        qJr: onp.ToFloat = ...,
+        qJz: onp.ToFloat = ...,
+        qJphi: onp.ToFloat = ...,
+    ) -> None: ...
+    # type = Exponential
+    # - mass is provided
+    @overload
+    def __init__(
+        self,
+        *,
+        type: Literal["Exponential"],
+        mass: onp.ToFloat = ...,
+        Jr0: onp.ToFloat = ...,
+        Jz0: onp.ToFloat = ...,
+        Jphi0: onp.ToFloat = ...,
+        addJden: onp.ToFloat = ...,
+        addJvel: onp.ToFloat = ...,
+        coefJr: onp.ToFloat = ...,
+        coefJz: onp.ToFloat = ...,
+        qJr: onp.ToFloat = ...,
+        qJz: onp.ToFloat = ...,
+        qJphi: onp.ToFloat = ...,
+    ) -> None: ...
+    # type = QuasiIsothermal
+    # - Sigma0 is provided
+    @overload
+    def __init__(
+        self,
+        *,
+        type: Literal["QuasiIsothermal"],
+        potential: _ToPotential,
+        Sigma0: onp.ToFloat = ...,
+        Rdisk: onp.ToFloat = ...,
+        Hdisk: onp.ToFloat = ...,
+        sigmar0: onp.ToFloat = ...,
+        sigmaz0: onp.ToFloat = ...,
+        sigmamin: onp.ToFloat = ...,
+        Rsigmar: onp.ToFloat = ...,
+        Rsigmaz: onp.ToFloat = ...,
+        coefJr: onp.ToFloat = ...,
+        Jmin: onp.ToFloat = ...,
+        qJr: onp.ToFloat = ...,
+        qJz: onp.ToFloat = ...,
+        qJphi: onp.ToFloat = ...,
+    ) -> None: ...
+    # type = QuasiIsothermal
+    # - mass is provided
+    @overload
+    def __init__(
+        self,
+        *,
+        type: Literal["QuasiIsothermal"],
+        potential: _ToPotential,
+        mass: onp.ToFloat = ...,
+        Rdisk: onp.ToFloat = ...,
+        Hdisk: onp.ToFloat = ...,
+        sigmar0: onp.ToFloat = ...,
+        sigmaz0: onp.ToFloat = ...,
+        sigmamin: onp.ToFloat = ...,
+        Rsigmar: onp.ToFloat = ...,
+        Rsigmaz: onp.ToFloat = ...,
+        coefJr: onp.ToFloat = ...,
+        Jmin: onp.ToFloat = ...,
+        qJr: onp.ToFloat = ...,
+        qJz: onp.ToFloat = ...,
+        qJphi: onp.ToFloat = ...,
+    ) -> None: ...
+    # type = QuasiSpherical
+    # - using aliases beta0 and anisotropyRadius
+    @overload
+    def __init__(
+        self,
+        *,
+        type: Literal["QuasiSpherical"],
+        potential: _ToPotential,
+        density: _ToDensity = ...,
+        beta0: onp.ToFloat = ...,
+        anisotropyRadius: onp.ToFloat = ...,
+        rotFrac: onp.ToFloat = ...,
+        Jphi0: onp.ToFloat = ...,
+    ) -> None: ...
+    # type = QuasiSpherical
+    # - using aliases beta and anisotropyRadius
+    @overload
+    def __init__(
+        self,
+        *,
+        type: Literal["QuasiSpherical"],
+        potential: _ToPotential,
+        density: _ToDensity = ...,
+        beta: onp.ToFloat = ...,
+        anisotropyRadius: onp.ToFloat = ...,
+        rotFrac: onp.ToFloat = ...,
+        Jphi0: onp.ToFloat = ...,
+    ) -> None: ...
+    # type = QuasiSpherical
+    # - using aliases beta0 and r_a
+    @overload
+    def __init__(
+        self,
+        *,
+        type: Literal["QuasiSpherical"],
+        potential: _ToPotential,
+        density: _ToDensity = ...,
+        beta0: onp.ToFloat = ...,
+        r_a: onp.ToFloat = ...,
+        rotFrac: onp.ToFloat = ...,
+        Jphi0: onp.ToFloat = ...,
+    ) -> None: ...
+    # type = QuasiSpherical
+    # - using aliases beta and r_a
+    @overload
+    def __init__(
+        self,
+        *,
+        type: Literal["QuasiSpherical"],
+        potential: _ToPotential,
+        density: _ToDensity = ...,
+        beta: onp.ToFloat = ...,
+        r_a: onp.ToFloat = ...,
+        rotFrac: onp.ToFloat = ...,
+        Jphi0: onp.ToFloat = ...,
+    ) -> None: ...
+
 class GalaxyModel: ...
 class SelectionFunction: ...
 class SelfConsistentModel: ...
