@@ -2,7 +2,6 @@ from collections.abc import Callable, Sequence
 from typing import Any, Final, Literal, overload, override
 
 import numpy as np
-import optype as op
 from optype import numpy as onp
 
 __all__ = [
@@ -582,6 +581,8 @@ class GalaxyModel:
     ) -> None: ...
 
     # Methods
+
+    # totalMass
     # separate = False
     @overload
     def totalMass(self, separate: onp.ToFalse = False) -> float: ...
@@ -593,6 +594,725 @@ class GalaxyModel:
     def totalMass(
         self, separate: onp.ToBool = False
     ) -> float | onp.Array1D[np.float64]: ...
+    # sample
+    def sample(
+        self, n: int, /
+    ) -> tuple[onp.Array2D[np.float64], onp.Array1D[np.float64]]: ...
+    # moments
+    # single point as 3 arguments (x, y, z)
+    # separate = False (default)
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        dens: onp.ToTrue = True,
+        vel: onp.ToFalse = False,
+        vel2: onp.ToTrue = True,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[float, onp.Array1D[np.float64]]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        vel2: onp.ToFalse,
+        dens: onp.ToTrue = True,
+        vel: onp.ToFalse = False,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> float: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        dens: onp.ToFalse,
+        vel: onp.ToFalse = False,
+        vel2: onp.ToTrue = True,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        vel: onp.ToTrue,
+        dens: onp.ToTrue = True,
+        vel2: onp.ToTrue = True,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[float, onp.Array1D[np.float64], onp.Array1D[np.float64]]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        dens: onp.ToFalse,
+        vel: onp.ToTrue,
+        vel2: onp.ToTrue = True,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array1D[np.float64]]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        vel: onp.ToTrue,
+        vel2: onp.ToFalse,
+        dens: onp.ToTrue = True,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[float, onp.Array1D[np.float64]]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        dens: onp.ToFalse,
+        vel: onp.ToTrue,
+        vel2: onp.ToFalse,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array1D[np.float64]: ...
+    # separate = True
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        dens: onp.ToTrue = True,
+        vel: onp.ToFalse = False,
+        vel2: onp.ToTrue = True,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array2D[np.float64]]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        vel2: onp.ToFalse,
+        dens: onp.ToTrue = True,
+        vel: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        dens: onp.ToFalse,
+        vel: onp.ToFalse = False,
+        vel2: onp.ToTrue = True,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array2D[np.float64]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        vel: onp.ToTrue,
+        dens: onp.ToTrue = True,
+        vel2: onp.ToTrue = True,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[
+        onp.Array1D[np.float64], onp.Array2D[np.float64], onp.Array2D[np.float64]
+    ]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        dens: onp.ToFalse,
+        vel: onp.ToTrue,
+        vel2: onp.ToTrue = True,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[onp.Array2D[np.float64], onp.Array2D[np.float64]]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        vel: onp.ToTrue,
+        vel2: onp.ToFalse,
+        dens: onp.ToTrue = True,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array2D[np.float64]]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        dens: onp.ToFalse,
+        vel: onp.ToTrue,
+        vel2: onp.ToFalse,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array2D[np.float64]: ...
+
+    # single point as 2 arguments (x, y)
+    # separate = False (default)
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        dens: onp.ToTrue = True,
+        vel: onp.ToFalse = False,
+        vel2: onp.ToTrue = True,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[float, onp.Array1D[np.float64]]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        vel2: onp.ToFalse,
+        dens: onp.ToTrue = True,
+        vel: onp.ToFalse = False,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> float: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        dens: onp.ToFalse,
+        vel: onp.ToFalse = False,
+        vel2: onp.ToTrue = True,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        vel: onp.ToTrue,
+        dens: onp.ToTrue = True,
+        vel2: onp.ToTrue = True,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[float, onp.Array1D[np.float64], onp.Array1D[np.float64]]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        dens: onp.ToFalse,
+        vel: onp.ToTrue,
+        vel2: onp.ToTrue = True,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array1D[np.float64]]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        vel: onp.ToTrue,
+        vel2: onp.ToFalse,
+        dens: onp.ToTrue = True,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[float, onp.Array1D[np.float64]]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        dens: onp.ToFalse,
+        vel: onp.ToTrue,
+        vel2: onp.ToFalse,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array1D[np.float64]: ...
+    # separate = True
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        dens: onp.ToTrue = True,
+        vel: onp.ToFalse = False,
+        vel2: onp.ToTrue = True,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array2D[np.float64]]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        vel2: onp.ToFalse,
+        dens: onp.ToTrue = True,
+        vel: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        dens: onp.ToFalse,
+        vel: onp.ToFalse = False,
+        vel2: onp.ToTrue = True,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array2D[np.float64]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        vel: onp.ToTrue,
+        dens: onp.ToTrue = True,
+        vel2: onp.ToTrue = True,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[
+        onp.Array1D[np.float64], onp.Array2D[np.float64], onp.Array2D[np.float64]
+    ]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        dens: onp.ToFalse,
+        vel: onp.ToTrue,
+        vel2: onp.ToTrue = True,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[onp.Array2D[np.float64], onp.Array2D[np.float64]]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        vel: onp.ToTrue,
+        vel2: onp.ToFalse,
+        dens: onp.ToTrue = True,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array2D[np.float64]]: ...
+    @overload
+    def moments(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        dens: onp.ToFalse,
+        vel: onp.ToTrue,
+        vel2: onp.ToFalse,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array2D[np.float64]: ...
+
+    # single point as array
+    # dens = True (default)
+    # vel = False (default)
+    # vel2 = True (default)
+    # separate = False (default)
+    @overload
+    def moments(
+        self,
+        point: onp.ToFloat1D,
+        /,
+        *,
+        dens: onp.ToTrue = True,
+        vel: onp.ToFalse = False,
+        vel2: onp.ToTrue = True,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[float, onp.Array1D[np.float64]]: ...
+    # single point as array
+    # dens = True (default)
+    # vel = False (default)
+    # vel2 = False (non-default)
+    # separate = False (default)
+    @overload
+    def moments(
+        self,
+        point: onp.ToFloat1D,
+        /,
+        *,
+        vel2: onp.ToFalse,
+        dens: onp.ToTrue = True,
+        vel: onp.ToFalse = False,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> float: ...
+    # single point as array
+    # dens = False (non-default)
+    # vel = False (default)
+    # vel2 = True (default)
+    # separate = False (default)
+    @overload
+    def moments(
+        self,
+        point: onp.ToFloat1D,
+        /,
+        *,
+        dens: onp.ToFalse,
+        vel: onp.ToFalse = False,
+        vel2: onp.ToTrue = True,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array1D[np.float64]: ...
+    # single point as array
+    # dens = True (default)
+    # vel = True (non-default)
+    # vel2 = True (default)
+    # separate = False (default)
+    @overload
+    def moments(
+        self,
+        point: onp.ToFloat1D,
+        /,
+        *,
+        vel: onp.ToTrue,
+        dens: onp.ToTrue = True,
+        vel2: onp.ToTrue = True,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[float, onp.Array1D[np.float64], onp.Array1D[np.float64]]: ...
+    # single point as array
+    # dens = False (non-default)
+    # vel = True (non-default)
+    # vel2 = True (default)
+    # separate = False (default)
+    @overload
+    def moments(
+        self,
+        point: onp.ToFloat1D,
+        /,
+        *,
+        dens: onp.ToFalse,
+        vel: onp.ToTrue,
+        vel2: onp.ToTrue = True,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array1D[np.float64]]: ...
+    # single point as array
+    # dens = True (default)
+    # vel = True (non-default)
+    # vel2 = False (non-default)
+    # separate = False (default)
+    @overload
+    def moments(
+        self,
+        point: onp.ToFloat1D,
+        /,
+        *,
+        vel: onp.ToTrue,
+        vel2: onp.ToFalse,
+        dens: onp.ToTrue = True,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[float, onp.Array1D[np.float64]]: ...
+    # single point as array
+    # dens = False (non-default)
+    # vel = True (non-default)
+    # vel2 = False (non-default)
+    # separate = False (default)
+    @overload
+    def moments(
+        self,
+        point: onp.ToFloat1D,
+        /,
+        *,
+        dens: onp.ToFalse,
+        vel: onp.ToTrue,
+        vel2: onp.ToFalse,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array1D[np.float64]: ...
+    # single point as array
+    # separate = True (non-default)
+    # dens = True (default)
+    # vel = False (default)
+    # vel2 = True (default)
+    @overload
+    def moments(
+        self,
+        point: onp.ToFloat1D,
+        /,
+        *,
+        separate: onp.ToTrue,
+        dens: onp.ToTrue = True,
+        vel: onp.ToFalse = False,
+        vel2: onp.ToTrue = True,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array2D[np.float64]]: ...
+    # single point as array
+    # separate = True (non-default)
+    # dens = True (default)
+    # vel = False (default)
+    # vel2 = False (non-default)
+    @overload
+    def moments(
+        self,
+        point: onp.ToFloat1D,
+        /,
+        *,
+        separate: onp.ToTrue,
+        vel2: onp.ToFalse,
+        dens: onp.ToTrue = True,
+        vel: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array1D[np.float64]: ...
+    # single point as array
+    # separate = True (non-default)
+    # dens = False (non-default)
+    # vel = False (default)
+    # vel2 = True (default)
+    @overload
+    def moments(
+        self,
+        point: onp.ToFloat1D,
+        /,
+        *,
+        separate: onp.ToTrue,
+        dens: onp.ToFalse,
+        vel: onp.ToFalse = False,
+        vel2: onp.ToTrue = True,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array2D[np.float64]: ...
+    # single point as array
+    # separate = True (non-default)
+    # dens = True (default)
+    # vel = True (non-default)
+    # vel2 = True (default)
+    @overload
+    def moments(
+        self,
+        point: onp.ToFloat1D,
+        /,
+        *,
+        separate: onp.ToTrue,
+        vel: onp.ToTrue,
+        dens: onp.ToTrue = True,
+        vel2: onp.ToTrue = True,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[
+        onp.Array1D[np.float64], onp.Array2D[np.float64], onp.Array2D[np.float64]
+    ]: ...
+    # single point as array
+    # separate = True (non-default)
+    # dens = False (non-default)
+    # vel = True (non-default)
+    # vel2 = True (default)
+    @overload
+    def moments(
+        self,
+        point: onp.ToFloat1D,
+        /,
+        *,
+        separate: onp.ToTrue,
+        dens: onp.ToFalse,
+        vel: onp.ToTrue,
+        vel2: onp.ToTrue = True,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[onp.Array2D[np.float64], onp.Array2D[np.float64]]: ...
+    # single point as array
+    # separate = True (non-default)
+    # dens = True (default)
+    # vel = True (non-default)
+    # vel2 = False (non-default)
+    @overload
+    def moments(
+        self,
+        point: onp.ToFloat1D,
+        /,
+        *,
+        separate: onp.ToTrue,
+        vel: onp.ToTrue,
+        vel2: onp.ToFalse,
+        dens: onp.ToTrue = True,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array2D[np.float64]]: ...
+    # single point as array
+    # separate = True (non-default)
+    # dens = False (non-default)
+    # vel = True (non-default)
+    # vel2 = False (non-default)
+    @overload
+    def moments(
+        self,
+        point: onp.ToFloat1D,
+        /,
+        *,
+        separate: onp.ToTrue,
+        dens: onp.ToFalse,
+        vel: onp.ToTrue,
+        vel2: onp.ToFalse,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array2D[np.float64]: ...
 
 class SelectionFunction:
     def __init__(

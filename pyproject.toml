@@ -12,7 +12,9 @@ license = { text = "MIT" }
 authors = [
     { name = "Pavadol Yamsiri", email = "pavyamsiri@gmail.com" }
 ]
-dependencies = ["optype[numpy]>=0.14.0,<0.16"]
+dependencies = [
+    "optype[numpy]>=0.14.0,<0.16",
+]
 
 classifiers = [
     "Typing :: Stubs Only",
