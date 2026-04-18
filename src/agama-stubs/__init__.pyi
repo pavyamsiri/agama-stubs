@@ -45,6 +45,7 @@ type _ToDensity = Density | _AgamaCallable
 type _ToDistributionFunction = (
     DistributionFunction | _AgamaCallable | Sequence[_ToDistributionFunction]
 )
+type _CallableSelectionFunction = SelectionFunction | _AgamaCallable
 
 class Density:
     @overload
@@ -570,7 +571,14 @@ class DistributionFunction:
     def __gt__(self, other: object) -> bool: ...
     def __ge__(self, other: object) -> bool: ...
 
-class GalaxyModel: ...
+class GalaxyModel:
+    def __init__(
+        self,
+        potential: _ToPotential,
+        df: _ToDistributionFunction,
+        af: ActionFinder = ...,
+        sf: _CallableSelectionFunction = ...,
+    ) -> None: ...
 
 class SelectionFunction:
     def __init__(
