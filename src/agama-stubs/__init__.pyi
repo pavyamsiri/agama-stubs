@@ -1053,7 +1053,7 @@ class GalaxyModel:
     @overload
     def moments(
         self,
-        point: onp.ToFloat1D,
+        point: onp.Array1D[np.float64] | Sequence[float],
         /,
         *,
         dens: onp.ToTrue = True,
@@ -1072,7 +1072,7 @@ class GalaxyModel:
     @overload
     def moments(
         self,
-        point: onp.ToFloat1D,
+        point: onp.Array1D[np.float64] | Sequence[float],
         /,
         *,
         vel2: onp.ToFalse,
@@ -1091,7 +1091,7 @@ class GalaxyModel:
     @overload
     def moments(
         self,
-        point: onp.ToFloat1D,
+        point: onp.Array1D[np.float64] | Sequence[float],
         /,
         *,
         dens: onp.ToFalse,
@@ -1110,7 +1110,7 @@ class GalaxyModel:
     @overload
     def moments(
         self,
-        point: onp.ToFloat1D,
+        point: onp.Array1D[np.float64] | Sequence[float],
         /,
         *,
         vel: onp.ToTrue,
@@ -1129,7 +1129,7 @@ class GalaxyModel:
     @overload
     def moments(
         self,
-        point: onp.ToFloat1D,
+        point: onp.Array1D[np.float64] | Sequence[float],
         /,
         *,
         dens: onp.ToFalse,
@@ -1148,7 +1148,7 @@ class GalaxyModel:
     @overload
     def moments(
         self,
-        point: onp.ToFloat1D,
+        point: onp.Array1D[np.float64] | Sequence[float],
         /,
         *,
         vel: onp.ToTrue,
@@ -1167,7 +1167,7 @@ class GalaxyModel:
     @overload
     def moments(
         self,
-        point: onp.ToFloat1D,
+        point: onp.Array1D[np.float64] | Sequence[float],
         /,
         *,
         dens: onp.ToFalse,
@@ -1178,6 +1178,95 @@ class GalaxyModel:
         beta: onp.ToFloat | onp.ToFloat1D = 0.0,
         gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
     ) -> onp.Array1D[np.float64]: ...
+
+    # projectedDF
+    # multiple points as 2D array
+    @overload
+    def projectedDF(
+        self,
+        point: onp.Array2D[np.float64],
+        /,
+        *,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def projectedDF(
+        self,
+        point: onp.Array2D[np.float64],
+        /,
+        *,
+        separate: onp.ToTrue,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array2D[np.float64]: ...
+
+    # single point as 8 separate arguments
+    @overload
+    def projectedDF(
+        self,
+        X: onp.ToFloat,
+        Y: onp.ToFloat,
+        vX: onp.ToFloat,
+        vY: onp.ToFloat,
+        vZ: onp.ToFloat,
+        evX: onp.ToFloat,
+        evY: onp.ToFloat,
+        evZ: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> float: ...
+    @overload
+    def projectedDF(
+        self,
+        X: onp.ToFloat,
+        Y: onp.ToFloat,
+        vX: onp.ToFloat,
+        vY: onp.ToFloat,
+        vZ: onp.ToFloat,
+        evX: onp.ToFloat,
+        evY: onp.ToFloat,
+        evZ: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array1D[np.float64]: ...
+
+    # single point as array (narrowed to Array1D to avoid overlap with Array2D)
+    @overload
+    def projectedDF(
+        self,
+        point: onp.Array1D[np.float64] | Sequence[float],
+        /,
+        *,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> float: ...
+    @overload
+    def projectedDF(
+        self,
+        point: onp.Array1D[np.float64] | Sequence[float],
+        /,
+        *,
+        separate: onp.ToTrue,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> onp.Array1D[np.float64]: ...
+
+    # vdf
     # single point as array
     # separate = True (non-default)
     # dens = True (default)
@@ -1186,7 +1275,7 @@ class GalaxyModel:
     @overload
     def moments(
         self,
-        point: onp.ToFloat1D,
+        point: onp.Array1D[np.float64] | Sequence[float],
         /,
         *,
         separate: onp.ToTrue,
@@ -1205,7 +1294,7 @@ class GalaxyModel:
     @overload
     def moments(
         self,
-        point: onp.ToFloat1D,
+        point: onp.Array1D[np.float64] | Sequence[float],
         /,
         *,
         separate: onp.ToTrue,
@@ -1224,7 +1313,7 @@ class GalaxyModel:
     @overload
     def moments(
         self,
-        point: onp.ToFloat1D,
+        point: onp.Array1D[np.float64] | Sequence[float],
         /,
         *,
         separate: onp.ToTrue,
@@ -1243,7 +1332,7 @@ class GalaxyModel:
     @overload
     def moments(
         self,
-        point: onp.ToFloat1D,
+        point: onp.Array1D[np.float64] | Sequence[float],
         /,
         *,
         separate: onp.ToTrue,
@@ -1264,7 +1353,7 @@ class GalaxyModel:
     @overload
     def moments(
         self,
-        point: onp.ToFloat1D,
+        point: onp.Array1D[np.float64] | Sequence[float],
         /,
         *,
         separate: onp.ToTrue,
@@ -1283,7 +1372,7 @@ class GalaxyModel:
     @overload
     def moments(
         self,
-        point: onp.ToFloat1D,
+        point: onp.Array1D[np.float64] | Sequence[float],
         /,
         *,
         separate: onp.ToTrue,
@@ -1302,7 +1391,7 @@ class GalaxyModel:
     @overload
     def moments(
         self,
-        point: onp.ToFloat1D,
+        point: onp.Array1D[np.float64] | Sequence[float],
         /,
         *,
         separate: onp.ToTrue,
@@ -1316,7 +1405,10 @@ class GalaxyModel:
 
 class SelectionFunction:
     def __init__(
-        self, point: onp.ToFloat1D, radius: onp.ToFloat, steepness: onp.ToFloat = ...
+        self,
+        point: onp.Array1D[np.float64] | Sequence[float],
+        radius: onp.ToFloat,
+        steepness: onp.ToFloat = ...,
     ) -> None: ...
     # Single point with single argument
     @overload
