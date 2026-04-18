@@ -484,6 +484,78 @@ class DistributionFunction:
     @override
     def __hash__(self) -> int: ...
 
+    # __call__
+    # single point (three inputs) with derivative
+    @overload
+    def __call__(
+        self, jr: onp.ToFloat, jz: onp.ToFloat, jphi: onp.ToFloat, *, der: Literal[True]
+    ) -> tuple[float, onp.Array1D[np.float64]]: ...
+    # single point (three inputs)
+    @overload
+    def __call__(
+        self,
+        jr: onp.ToFloat,
+        jz: onp.ToFloat,
+        jphi: onp.ToFloat,
+        *,
+        der: Literal[False] = False,
+    ) -> float: ...
+    # single point (three inputs) fallback
+    @overload
+    def __call__(
+        self,
+        jr: onp.ToFloat,
+        jz: onp.ToFloat,
+        jphi: onp.ToFloat,
+        *,
+        der: bool = ...,
+    ) -> float | tuple[float, onp.Array1D[np.float64]]: ...
+    # single point (1D array) with derivative
+    @overload
+    def __call__(
+        self, act: onp.Array1D[np.inexact], *, der: Literal[True]
+    ) -> tuple[float, onp.Array1D[np.float64]]: ...
+    # single point (1D array)
+    @overload
+    def __call__(
+        self,
+        act: onp.Array1D[np.inexact],
+        *,
+        der: Literal[False] = False,
+    ) -> float: ...
+    # single point (1D array) fallback
+    @overload
+    def __call__(
+        self,
+        act: onp.Array1D[np.inexact],
+        *,
+        der: bool = ...,
+    ) -> float | tuple[float, onp.Array1D[np.float64]]: ...
+    # multiple points (2D array) with derivative
+    @overload
+    def __call__(
+        self, act: onp.Array2D[np.inexact], *, der: Literal[True]
+    ) -> tuple[onp.Array1D[np.float64], onp.Array2D[np.float64]]: ...
+    # multiple points (2D array)
+    @overload
+    def __call__(
+        self,
+        act: onp.Array2D[np.inexact],
+        *,
+        der: Literal[False] = False,
+    ) -> onp.Array1D[np.float64]: ...
+    # multiple points (2D array) fallback
+    @overload
+    def __call__(
+        self,
+        act: onp.Array2D[np.inexact],
+        *,
+        der: bool = ...,
+    ) -> (
+        onp.Array1D[np.float64]
+        | tuple[onp.Array1D[np.float64], onp.Array2D[np.float64]]
+    ): ...
+
 class GalaxyModel: ...
 class SelectionFunction: ...
 class SelfConsistentModel: ...
