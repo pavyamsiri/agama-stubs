@@ -571,11 +571,38 @@ class DistributionFunction:
     def __ge__(self, other: object) -> bool: ...
 
 class GalaxyModel: ...
-class SelectionFunction: ...
+
+class SelectionFunction:
+    def __init__(
+        self, point: onp.ToFloat1D, radius: onp.ToFloat, steepness: onp.ToFloat = ...
+    ) -> None: ...
+    # Single point with single argument
+    @overload
+    def __call__(self, posvel: onp.Array1D[np.inexact]) -> float: ...
+    # Single point with multiple arguments
+    @overload
+    def __call__(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        vx: onp.ToFloat,
+        vy: onp.ToFloat,
+        vz: onp.ToFloat,
+    ) -> float: ...
+    # Multiple points via 2D array
+    @overload
+    def __call__(self, posvel: onp.Array2D[np.inexact]) -> onp.Array1D[np.float64]: ...
+    # Fallback
+    @overload
+    def __call__(
+        self, posvel: onp.ToFloat1D | onp.ToFloat2D
+    ) -> float | onp.Array1D[np.float64]: ...
+
 class SelfConsistentModel: ...
 
 class Spline:
-    # x and y values are given
+    # x and y values are ziven
     # - der is optional
     # - quintic is optional
     @overload
