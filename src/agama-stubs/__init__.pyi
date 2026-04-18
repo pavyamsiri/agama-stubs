@@ -1,7 +1,8 @@
-from collections.abc import Sequence, Callable
-from typing import Any, Final, overload, override, Literal
+from collections.abc import Callable, Sequence
+from typing import Any, Final, Literal, overload, override
 
 import numpy as np
+import optype as op
 from optype import numpy as onp
 
 __all__ = [
@@ -579,6 +580,19 @@ class GalaxyModel:
         af: ActionFinder = ...,
         sf: _CallableSelectionFunction = ...,
     ) -> None: ...
+
+    # Methods
+    # separate = False
+    @overload
+    def totalMass(self, separate: onp.ToFalse = False) -> float: ...
+    # separate = True
+    @overload
+    def totalMass(self, separate: onp.ToTrue) -> onp.Array1D[np.float64]: ...
+    # Fallback
+    @overload
+    def totalMass(
+        self, separate: onp.ToBool = False
+    ) -> float | onp.Array1D[np.float64]: ...
 
 class SelectionFunction:
     def __init__(
