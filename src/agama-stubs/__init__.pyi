@@ -1227,7 +1227,9 @@ class GalaxyModel:
         alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
         beta: onp.ToFloat | onp.ToFloat1D = 0.0,
         gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
-    ) -> tuple[onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]]: ...
+    ) -> tuple[
+        onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]
+    ]: ...
     @overload
     def vdf(
         self,
@@ -1293,7 +1295,9 @@ class GalaxyModel:
         alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
         beta: onp.ToFloat | onp.ToFloat1D = 0.0,
         gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
-    ) -> tuple[onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]]: ...
+    ) -> tuple[
+        onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]
+    ]: ...
     @overload
     def vdf(
         self,
@@ -1355,7 +1359,9 @@ class GalaxyModel:
         alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
         beta: onp.ToFloat | onp.ToFloat1D = 0.0,
         gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
-    ) -> tuple[onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]]: ...
+    ) -> tuple[
+        onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]
+    ]: ...
     @overload
     def vdf(
         self,
@@ -1668,6 +1674,16 @@ class GalaxyModel:
         beta: onp.ToFloat | onp.ToFloat1D = 0.0,
         gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
     ) -> onp.Array2D[np.float64]: ...
+
+    # Properties
+    @property
+    def potential(self) -> Potential: ...
+    @property
+    def af(self) -> ActionFinder: ...
+    @property
+    def df(self) -> DistributionFunction: ...
+    @property
+    def sf(self) -> SelectionFunction: ...
 
 class SelectionFunction:
     def __init__(
