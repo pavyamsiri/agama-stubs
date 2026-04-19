@@ -375,3 +375,172 @@ assert_type(
     gm.moments(x, y, dens=False, vel=True, vel2=False, separate=True),
     onp.Array2D[np.float64],
 )
+
+# vdf
+
+# single point as 3 separate arguments (x, y, z)
+# separate = False (default)
+assert_type(gm.vdf(x, y, z), tuple[agama.Spline, agama.Spline, agama.Spline])
+assert_type(
+    gm.vdf(x, y, z, dens=False, separate=False),
+    tuple[agama.Spline, agama.Spline, agama.Spline],
+)
+
+# separate = False, dens = True
+assert_type(
+    gm.vdf(x, y, z, dens=True), tuple[agama.Spline, agama.Spline, agama.Spline, float]
+)
+assert_type(
+    gm.vdf(x, y, z, dens=True, separate=False),
+    tuple[agama.Spline, agama.Spline, agama.Spline, float],
+)
+
+# separate = True, dens = False
+assert_type(
+    gm.vdf(x, y, z, separate=True),
+    tuple[onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]],
+)
+assert_type(
+    gm.vdf(x, y, z, separate=True, dens=False),
+    tuple[onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]],
+)
+
+# separate = True, dens = True
+assert_type(
+    gm.vdf(x, y, z, separate=True, dens=True),
+    tuple[
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.float64],
+    ],
+)
+
+# single point as 2 separate arguments (x, y)
+# separate = False (default)
+assert_type(gm.vdf(x, y), tuple[agama.Spline, agama.Spline, agama.Spline])
+assert_type(
+    gm.vdf(x, y, dens=False, separate=False),
+    tuple[agama.Spline, agama.Spline, agama.Spline],
+)
+
+# separate = False, dens = True
+assert_type(
+    gm.vdf(x, y, dens=True), tuple[agama.Spline, agama.Spline, agama.Spline, float]
+)
+assert_type(
+    gm.vdf(x, y, dens=True, separate=False),
+    tuple[agama.Spline, agama.Spline, agama.Spline, float],
+)
+
+# separate = True, dens = False
+assert_type(
+    gm.vdf(x, y, separate=True),
+    tuple[onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]],
+)
+assert_type(
+    gm.vdf(x, y, separate=True, dens=False),
+    tuple[onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]],
+)
+
+# separate = True, dens = True
+assert_type(
+    gm.vdf(x, y, separate=True, dens=True),
+    tuple[
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.float64],
+    ],
+)
+
+# single point as 1D array
+# separate = False (default)
+assert_type(gm.vdf(point), tuple[agama.Spline, agama.Spline, agama.Spline])
+assert_type(
+    gm.vdf(point, dens=False, separate=False),
+    tuple[agama.Spline, agama.Spline, agama.Spline],
+)
+
+# separate = False, dens = True
+assert_type(
+    gm.vdf(point, dens=True), tuple[agama.Spline, agama.Spline, agama.Spline, float]
+)
+assert_type(
+    gm.vdf(point, dens=True, separate=False),
+    tuple[agama.Spline, agama.Spline, agama.Spline, float],
+)
+
+# separate = True, dens = False
+assert_type(
+    gm.vdf(point, separate=True),
+    tuple[onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]],
+)
+assert_type(
+    gm.vdf(point, separate=True, dens=False),
+    tuple[onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]],
+)
+
+# separate = True, dens = True
+assert_type(
+    gm.vdf(point, separate=True, dens=True),
+    tuple[
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.float64],
+    ],
+)
+
+# multiple points as 2D array
+points: onp.Array2D[np.float64]
+# separate = False (default)
+assert_type(
+    gm.vdf(points),
+    tuple[onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]],
+)
+assert_type(
+    gm.vdf(points, dens=False, separate=False),
+    tuple[onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]],
+)
+
+# separate = False, dens = True
+assert_type(
+    gm.vdf(points, dens=True),
+    tuple[
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.float64],
+    ],
+)
+assert_type(
+    gm.vdf(points, dens=True, separate=False),
+    tuple[
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.float64],
+    ],
+)
+
+# separate = True, dens = False
+assert_type(
+    gm.vdf(points, separate=True),
+    tuple[onp.Array2D[np.object_], onp.Array2D[np.object_], onp.Array2D[np.object_]],
+)
+assert_type(
+    gm.vdf(points, separate=True, dens=False),
+    tuple[onp.Array2D[np.object_], onp.Array2D[np.object_], onp.Array2D[np.object_]],
+)
+
+# separate = True, dens = True
+assert_type(
+    gm.vdf(points, separate=True, dens=True),
+    tuple[
+        onp.Array2D[np.object_],
+        onp.Array2D[np.object_],
+        onp.Array2D[np.object_],
+        onp.Array2D[np.float64],
+    ],
+)

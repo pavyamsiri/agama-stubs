@@ -39,7 +39,7 @@ exclude = [
   "**/.venv",
 ]
 ignore = [".venv"]
-stubPath = "."
+stubPath = "src"
 pythonPlatform = "All"
 typeCheckingMode = "strict"
 deprecateTypingAliases = true

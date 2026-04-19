@@ -1179,6 +1179,272 @@ class GalaxyModel:
         gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
     ) -> onp.Array1D[np.float64]: ...
 
+    # vdf
+    # single point as 3 separate arguments (x, y, z)
+    # separate = False (default)
+    @overload
+    def vdf(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        gridv: int | onp.ToFloat1D = 50,
+        dens: onp.ToFalse = False,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[Spline, Spline, Spline]: ...
+    @overload
+    def vdf(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        dens: onp.ToTrue,
+        gridv: int | onp.ToFloat1D = 50,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[Spline, Spline, Spline, float]: ...
+    # separate = True
+    @overload
+    def vdf(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        gridv: int | onp.ToFloat1D = 50,
+        dens: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]]: ...
+    @overload
+    def vdf(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        dens: onp.ToTrue,
+        gridv: int | onp.ToFloat1D = 50,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.float64],
+    ]: ...
+
+    # single point as 2 separate arguments (x, y)
+    # separate = False (default)
+    @overload
+    def vdf(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        gridv: int | onp.ToFloat1D = 50,
+        dens: onp.ToFalse = False,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[Spline, Spline, Spline]: ...
+    @overload
+    def vdf(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        dens: onp.ToTrue,
+        gridv: int | onp.ToFloat1D = 50,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[Spline, Spline, Spline, float]: ...
+    # separate = True
+    @overload
+    def vdf(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        gridv: int | onp.ToFloat1D = 50,
+        dens: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]]: ...
+    @overload
+    def vdf(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        separate: onp.ToTrue,
+        dens: onp.ToTrue,
+        gridv: int | onp.ToFloat1D = 50,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.float64],
+    ]: ...
+
+    # single point as 1D array
+    # separate = False (default)
+    @overload
+    def vdf(
+        self,
+        point: onp.Array1D[np.float64] | Sequence[float],
+        /,
+        *,
+        gridv: int | onp.ToFloat1D = 50,
+        dens: onp.ToFalse = False,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[Spline, Spline, Spline]: ...
+    @overload
+    def vdf(
+        self,
+        point: onp.Array1D[np.float64] | Sequence[float],
+        /,
+        *,
+        dens: onp.ToTrue,
+        gridv: int | onp.ToFloat1D = 50,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[Spline, Spline, Spline, float]: ...
+    # separate = True
+    @overload
+    def vdf(
+        self,
+        point: onp.Array1D[np.float64] | Sequence[float],
+        /,
+        *,
+        separate: onp.ToTrue,
+        gridv: int | onp.ToFloat1D = 50,
+        dens: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]]: ...
+    @overload
+    def vdf(
+        self,
+        point: onp.Array1D[np.float64] | Sequence[float],
+        /,
+        *,
+        separate: onp.ToTrue,
+        dens: onp.ToTrue,
+        gridv: int | onp.ToFloat1D = 50,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.float64],
+    ]: ...
+
+    # multiple points as 2D array
+    # separate = False (default)
+    @overload
+    def vdf(
+        self,
+        point: onp.Array2D[np.float64],
+        /,
+        *,
+        gridv: int | onp.ToFloat1D = 50,
+        dens: onp.ToFalse = False,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[
+        onp.Array1D[np.object_], onp.Array1D[np.object_], onp.Array1D[np.object_]
+    ]: ...
+    @overload
+    def vdf(
+        self,
+        point: onp.Array2D[np.float64],
+        /,
+        *,
+        dens: onp.ToTrue,
+        gridv: int | onp.ToFloat1D = 50,
+        separate: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.object_],
+        onp.Array1D[np.float64],
+    ]: ...
+    # separate = True
+    @overload
+    def vdf(
+        self,
+        point: onp.Array2D[np.float64],
+        /,
+        *,
+        separate: onp.ToTrue,
+        gridv: int | onp.ToFloat1D = 50,
+        dens: onp.ToFalse = False,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[
+        onp.Array2D[np.object_], onp.Array2D[np.object_], onp.Array2D[np.object_]
+    ]: ...
+    @overload
+    def vdf(
+        self,
+        point: onp.Array2D[np.float64],
+        /,
+        *,
+        separate: onp.ToTrue,
+        dens: onp.ToTrue,
+        gridv: int | onp.ToFloat1D = 50,
+        alpha: onp.ToFloat | onp.ToFloat1D = 0.0,
+        beta: onp.ToFloat | onp.ToFloat1D = 0.0,
+        gamma: onp.ToFloat | onp.ToFloat1D = 0.0,
+    ) -> tuple[
+        onp.Array2D[np.object_],
+        onp.Array2D[np.object_],
+        onp.Array2D[np.object_],
+        onp.Array2D[np.float64],
+    ]: ...
+
     # projectedDF
     # multiple points as 2D array
     @overload
