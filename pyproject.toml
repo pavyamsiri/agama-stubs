@@ -13,7 +13,7 @@ authors = [
     { name = "Pavadol Yamsiri", email = "pavyamsiri@gmail.com" }
 ]
 dependencies = [
-    "optype[numpy]>=0.14.0,<0.16",
+    "optype[numpy]>=0.17.0",
 ]
 
 classifiers = [
