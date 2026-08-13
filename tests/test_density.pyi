@@ -1,6 +1,7 @@
-import numpy as np
-import agama
 from typing import assert_type
+
+import agama
+import numpy as np
 from optype import numpy as onp
 
 # Test different initialization methods
@@ -11,12 +12,12 @@ d2 = agama.Density(filename="some_file.ini")
 assert_type(d2, agama.Density)
 
 # Test with array-like (list of lists)
-cumul_mass = [[0.1, 1.0], [0.2, 2.0]]
+cumul_mass: list[list[np.float64]]
 d3 = agama.Density(cumul_mass)
 assert_type(d3, agama.Density)
 
 # Test with numpy array
-# Note: In .pyi files, we don't have runtime values, 
+# Note: In .pyi files, we don't have runtime values,
 # so we declare variables with types to simulate them.
 cumul_mass_np: onp.Array2D[np.float64]
 d4 = agama.Density(cumul_mass_np)
