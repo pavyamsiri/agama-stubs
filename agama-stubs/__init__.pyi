@@ -3,6 +3,9 @@ from typing import Final
 from ._actions import ActionFinder as ActionFinder
 from ._actions import ActionMapper as ActionMapper
 from ._functions import (
+    Orbit as Orbit,
+)
+from ._functions import (
     actions as actions,
 )
 from ._functions import (

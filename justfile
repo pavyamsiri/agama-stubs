@@ -1,7 +1,7 @@
 set shell := ["bash", "-cu"]
 
 stubs := "agama-stubs"
-typing_tests := "tests/test_density.pyi tests/test_actionfinder.pyi tests/test_potential.pyi tests/test_constructors.pyi"
+typing_tests := "tests/test_density.pyi tests/test_actionfinder.pyi tests/test_potential.pyi tests/test_constructors.pyi tests/test_results.pyi"
 scripts := "scripts"
 sources := stubs + " " + typing_tests + " " + scripts
 python := ".venv/bin/python"
@@ -19,11 +19,13 @@ ready:
 generate:
     {{python}} -m scripts.generate_potential_overloads
     {{python}} -m scripts.generate_constructor_overloads
+    {{python}} -m scripts.generate_result_overloads
 
 # Check that generated constructor overloads are current.
 generate-check:
     {{python}} -m scripts.generate_potential_overloads --check
     {{python}} -m scripts.generate_constructor_overloads --check
+    {{python}} -m scripts.generate_result_overloads --check
 
 format:
     .venv/bin/ruff check --fix {{sources}}

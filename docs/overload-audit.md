@@ -16,8 +16,12 @@ The audit distinguishes two mechanisms:
 ## Recommended generator scope
 
 Implementation status: constructor schemas for `Potential`, `Density`,
-`DistributionFunction`, `Target`, and `Component` are generated. Result-dispatch
-and shape/dtype-dispatch APIs remain audit-only and are intentionally deferred.
+`DistributionFunction`, `Target`, and `Component` are generated.
+All APIs recommended for combinatorial generation are now generated:
+`Potential.eval`, `Potential.projectedEval`, action and DF calls,
+`GalaxyModel.totalMass`, `moments`, `vdf`, `projectedDF`, and `orbit`. The
+ordinary scalar/batch methods below remain candidates for concise handwritten
+overloads rather than Cartesian-product generation.
 
 | Priority | API | Dispatch keys | Recommendation |
 | --- | --- | --- | --- |
@@ -160,6 +164,9 @@ This requires 7 flag combinations × 2 input-rank families for each method.
 and optional orientation/time arrays. A shared flag-product generator is
 preferable to 28 handwritten overloads.
 
+Both methods are implemented with generated overloads, including their
+unpacked-coordinate calling forms.
+
 ### Action APIs
 
 Authoritative implementations: lines 3589–3935.
@@ -269,7 +276,6 @@ result schema
   outputs -> ordered fields and shape transform for each input family
 ```
 
-The next implementation step should be `Target.__init__`: it is self-contained,
-has seven finite discriminator values, and will establish whether the existing
-potential schema can be generalized cleanly before tackling the larger DF
-factory and flag-product generators.
+Constructor and result-product generator work described by this audit is now
+complete. Future work may improve the smaller handwritten scalar/batch methods
+or add newly introduced runtime APIs as Agama evolves.

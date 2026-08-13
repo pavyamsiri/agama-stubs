@@ -34,6 +34,11 @@ recognized as stub-only packages.
   directly. Methods and other declarations remain handwritten. Run
   `just generate` after changing a specification; `just check` verifies that
   generated declarations are current.
+- Edit `scripts/result_dispatch_spec.py` and
+  `scripts/generate_result_overloads.py` for generated literal-flag, input-rank,
+  and dtype dispatch. This generator owns both Potential evaluation methods,
+  action calls, DF calls, GalaxyModel result methods, and `orbit`. Do not edit
+  their marked sections directly.
 
 ## Stub conventions
 

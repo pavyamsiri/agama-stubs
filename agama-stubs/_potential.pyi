@@ -6845,5 +6845,559 @@ class Potential(Density):
         scale: Sequence[float] | str = ...,
     ) -> None: ...
     # END GENERATED POTENTIAL INIT OVERLOADS
+    # BEGIN GENERATED POTENTIAL EVAL OVERLOADS
+    @overload
+    def eval(
+        self,
+        point: tuple[onp.ToFloat, onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[False] = ...,
+        der: Literal[False] = ...,
+        t: onp.ToFloat = ...,
+    ) -> float: ...
+    @overload
+    def eval(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[False] = ...,
+        der: Literal[False] = ...,
+        t: onp.ToFloat = ...,
+    ) -> float: ...
+    @overload
+    def eval(
+        self,
+        points: onp.ToFloat2D,
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[False] = ...,
+        der: Literal[False] = ...,
+        t: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def eval(
+        self,
+        point: tuple[onp.ToFloat, onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[True],
+        der: Literal[False] = ...,
+        t: onp.ToFloat = ...,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def eval(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[True],
+        der: Literal[False] = ...,
+        t: onp.ToFloat = ...,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def eval(
+        self,
+        points: onp.ToFloat2D,
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[True],
+        der: Literal[False] = ...,
+        t: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> onp.Array2D[np.float64]: ...
+    @overload
+    def eval(
+        self,
+        point: tuple[onp.ToFloat, onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[False] = ...,
+        der: Literal[True],
+        t: onp.ToFloat = ...,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def eval(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[False] = ...,
+        der: Literal[True],
+        t: onp.ToFloat = ...,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def eval(
+        self,
+        points: onp.ToFloat2D,
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[False] = ...,
+        der: Literal[True],
+        t: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> onp.Array2D[np.float64]: ...
+    @overload
+    def eval(
+        self,
+        point: tuple[onp.ToFloat, onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[True],
+        der: Literal[False] = ...,
+        t: onp.ToFloat = ...,
+    ) -> tuple[float, onp.Array1D[np.float64]]: ...
+    @overload
+    def eval(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[True],
+        der: Literal[False] = ...,
+        t: onp.ToFloat = ...,
+    ) -> tuple[float, onp.Array1D[np.float64]]: ...
+    @overload
+    def eval(
+        self,
+        points: onp.ToFloat2D,
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[True],
+        der: Literal[False] = ...,
+        t: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array2D[np.float64]]: ...
+    @overload
+    def eval(
+        self,
+        point: tuple[onp.ToFloat, onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[False] = ...,
+        der: Literal[True],
+        t: onp.ToFloat = ...,
+    ) -> tuple[float, onp.Array1D[np.float64]]: ...
+    @overload
+    def eval(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[False] = ...,
+        der: Literal[True],
+        t: onp.ToFloat = ...,
+    ) -> tuple[float, onp.Array1D[np.float64]]: ...
+    @overload
+    def eval(
+        self,
+        points: onp.ToFloat2D,
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[False] = ...,
+        der: Literal[True],
+        t: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array2D[np.float64]]: ...
+    @overload
+    def eval(
+        self,
+        point: tuple[onp.ToFloat, onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[True],
+        der: Literal[True],
+        t: onp.ToFloat = ...,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array1D[np.float64]]: ...
+    @overload
+    def eval(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[True],
+        der: Literal[True],
+        t: onp.ToFloat = ...,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array1D[np.float64]]: ...
+    @overload
+    def eval(
+        self,
+        points: onp.ToFloat2D,
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[True],
+        der: Literal[True],
+        t: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> tuple[onp.Array2D[np.float64], onp.Array2D[np.float64]]: ...
+    @overload
+    def eval(
+        self,
+        point: tuple[onp.ToFloat, onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[True],
+        der: Literal[True],
+        t: onp.ToFloat = ...,
+    ) -> tuple[float, onp.Array1D[np.float64], onp.Array1D[np.float64]]: ...
+    @overload
+    def eval(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[True],
+        der: Literal[True],
+        t: onp.ToFloat = ...,
+    ) -> tuple[float, onp.Array1D[np.float64], onp.Array1D[np.float64]]: ...
+    @overload
+    def eval(
+        self,
+        points: onp.ToFloat2D,
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[True],
+        der: Literal[True],
+        t: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> tuple[
+        onp.Array1D[np.float64], onp.Array2D[np.float64], onp.Array2D[np.float64]
+    ]: ...
+    # END GENERATED POTENTIAL EVAL OVERLOADS
+    # BEGIN GENERATED POTENTIAL PROJECTED EVAL OVERLOADS
+    @overload
+    def projectedEval(
+        self,
+        point: tuple[onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[False] = ...,
+        der: Literal[False] = ...,
+        t: onp.ToFloat = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> float: ...
+    @overload
+    def projectedEval(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[False] = ...,
+        der: Literal[False] = ...,
+        t: onp.ToFloat = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> float: ...
+    @overload
+    def projectedEval(
+        self,
+        points: onp.ToFloat2D,
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[False] = ...,
+        der: Literal[False] = ...,
+        t: onp.ToFloat | onp.ToFloat1D = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def projectedEval(
+        self,
+        point: tuple[onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[True],
+        der: Literal[False] = ...,
+        t: onp.ToFloat = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def projectedEval(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[True],
+        der: Literal[False] = ...,
+        t: onp.ToFloat = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def projectedEval(
+        self,
+        points: onp.ToFloat2D,
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[True],
+        der: Literal[False] = ...,
+        t: onp.ToFloat | onp.ToFloat1D = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> onp.Array2D[np.float64]: ...
+    @overload
+    def projectedEval(
+        self,
+        point: tuple[onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[False] = ...,
+        der: Literal[True],
+        t: onp.ToFloat = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def projectedEval(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[False] = ...,
+        der: Literal[True],
+        t: onp.ToFloat = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def projectedEval(
+        self,
+        points: onp.ToFloat2D,
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[False] = ...,
+        der: Literal[True],
+        t: onp.ToFloat | onp.ToFloat1D = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> onp.Array2D[np.float64]: ...
+    @overload
+    def projectedEval(
+        self,
+        point: tuple[onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[True],
+        der: Literal[False] = ...,
+        t: onp.ToFloat = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> tuple[float, onp.Array1D[np.float64]]: ...
+    @overload
+    def projectedEval(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[True],
+        der: Literal[False] = ...,
+        t: onp.ToFloat = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> tuple[float, onp.Array1D[np.float64]]: ...
+    @overload
+    def projectedEval(
+        self,
+        points: onp.ToFloat2D,
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[True],
+        der: Literal[False] = ...,
+        t: onp.ToFloat | onp.ToFloat1D = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array2D[np.float64]]: ...
+    @overload
+    def projectedEval(
+        self,
+        point: tuple[onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[False] = ...,
+        der: Literal[True],
+        t: onp.ToFloat = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> tuple[float, onp.Array1D[np.float64]]: ...
+    @overload
+    def projectedEval(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[False] = ...,
+        der: Literal[True],
+        t: onp.ToFloat = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> tuple[float, onp.Array1D[np.float64]]: ...
+    @overload
+    def projectedEval(
+        self,
+        points: onp.ToFloat2D,
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[False] = ...,
+        der: Literal[True],
+        t: onp.ToFloat | onp.ToFloat1D = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array2D[np.float64]]: ...
+    @overload
+    def projectedEval(
+        self,
+        point: tuple[onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[True],
+        der: Literal[True],
+        t: onp.ToFloat = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array1D[np.float64]]: ...
+    @overload
+    def projectedEval(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[True],
+        der: Literal[True],
+        t: onp.ToFloat = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array1D[np.float64]]: ...
+    @overload
+    def projectedEval(
+        self,
+        points: onp.ToFloat2D,
+        /,
+        *,
+        pot: Literal[False] = ...,
+        acc: Literal[True],
+        der: Literal[True],
+        t: onp.ToFloat | onp.ToFloat1D = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> tuple[onp.Array2D[np.float64], onp.Array2D[np.float64]]: ...
+    @overload
+    def projectedEval(
+        self,
+        point: tuple[onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[True],
+        der: Literal[True],
+        t: onp.ToFloat = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> tuple[float, onp.Array1D[np.float64], onp.Array1D[np.float64]]: ...
+    @overload
+    def projectedEval(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[True],
+        der: Literal[True],
+        t: onp.ToFloat = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> tuple[float, onp.Array1D[np.float64], onp.Array1D[np.float64]]: ...
+    @overload
+    def projectedEval(
+        self,
+        points: onp.ToFloat2D,
+        /,
+        *,
+        pot: Literal[True],
+        acc: Literal[True],
+        der: Literal[True],
+        t: onp.ToFloat | onp.ToFloat1D = ...,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> tuple[
+        onp.Array1D[np.float64], onp.Array2D[np.float64], onp.Array2D[np.float64]
+    ]: ...
+    # END GENERATED POTENTIAL PROJECTED EVAL OVERLOADS
     def potential(self, *args: Any, **kwargs: Any) -> Any: ...
     def force(self, *args: Any, **kwargs: Any) -> Any: ...

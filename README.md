@@ -50,3 +50,7 @@ just check
 The generators update only marked constructor sections. Methods outside those
 sections remain handwritten and may be edited normally. Do not edit generated
 constructor sections directly.
+
+Result and shape overloads are generated from `scripts/result_dispatch_spec.py`
+and `scripts/generate_result_overloads.py`. This includes Potential evaluation,
+action and DF calls, GalaxyModel result methods, and `orbit` trajectory modes.
