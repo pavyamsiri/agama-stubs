@@ -1,4 +1,4 @@
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from typing import Any, Literal, overload
 
 import numpy as np
@@ -6,6 +6,7 @@ from optype import numpy as onp
 
 from ._actions import ActionFinder
 from ._galaxy import Target
+from ._orbit import Orbit
 from ._potential import _ToPotential
 
 type _OrbitTargetScalar = onp.Array1D[np.float32]
@@ -22,22 +23,58 @@ type _OrbitResultBatch = (
     _OrbitTargetBatch | _OrbitObjectVector | _OrbitObjectBatch | _OrbitLyapunovBatch
 )
 
-class Orbit:
-    def __new__(cls) -> Orbit: ...
-    @overload
-    def __call__(self, time: onp.ToFloat, /) -> onp.Array1D[np.float64]: ...
-    @overload
-    def __call__(self, time: onp.ToFloat1D, /) -> onp.Array2D[np.float64]: ...
-    def __len__(self) -> int: ...
-    def __getitem__(self, index: int) -> float: ...
-
-def readSnapshot(filename: str, /) -> Any: ...
-def writeSnapshot(filename: str, particles: Any, format: str = "t") -> None: ...
-def setUnits(**kwargs: Any) -> None: ...
+def readSnapshot(
+    filename: str, /
+) -> tuple[onp.Array2D[np.float64], onp.Array1D[np.float64]]: ...
+def writeSnapshot(
+    filename: str,
+    particles: tuple[onp.ToFloat2D, onp.ToFloat1D],
+    format: str = "t",
+) -> None: ...
+@overload
+def setUnits() -> None: ...
+@overload
+def setUnits(
+    *, mass: onp.ToFloat, length: onp.ToFloat, velocity: onp.ToFloat
+) -> None: ...
+@overload
+def setUnits(*, mass: onp.ToFloat, length: onp.ToFloat, time: onp.ToFloat) -> None: ...
+@overload
+def setUnits(
+    *, mass: onp.ToFloat, velocity: onp.ToFloat, time: onp.ToFloat
+) -> None: ...
 def getUnits() -> dict[str, float]: ...
 def setRandomSeed(seed: int) -> None: ...
-def sampleNdim(fnc: Any, nsamples: int, **kwargs: Any) -> Any: ...
-def integrateNdim(fnc: Any, nsamples: int, **kwargs: Any) -> Any: ...
+
+type _NdimCallable = Callable[[onp.Array2D[np.float64]], onp.ToFloat | onp.ToFloat1D]
+type _SampleResult = tuple[onp.Array2D[np.float64], float, float, int]
+
+@overload
+def sampleNdim(fnc: _NdimCallable, nsamples: int, lower: int) -> _SampleResult: ...
+@overload
+def sampleNdim(
+    fnc: _NdimCallable,
+    nsamples: int,
+    lower: onp.ToFloat1D,
+    upper: onp.ToFloat1D,
+) -> _SampleResult: ...
+@overload
+def integrateNdim(
+    fnc: _NdimCallable,
+    lower: int,
+    *,
+    toler: onp.ToFloat = ...,
+    maxeval: onp.ToInt = ...,
+) -> tuple[float, float, int]: ...
+@overload
+def integrateNdim(
+    fnc: _NdimCallable,
+    lower: onp.ToFloat1D,
+    upper: onp.ToFloat1D,
+    *,
+    toler: onp.ToFloat = ...,
+    maxeval: onp.ToInt = ...,
+) -> tuple[float, float, int]: ...
 
 # BEGIN GENERATED ORBIT OVERLOADS
 @overload
@@ -898,10 +935,48 @@ def orbit(
 # END GENERATED ORBIT OVERLOADS
 def splineApprox(knots: Any, x: Any, y: Any, **kwargs: Any) -> Any: ...
 def splineLogDensity(knots: Any, x: Any, **kwargs: Any) -> Any: ...
-def solveOpt(**kwargs: Any) -> Any: ...
+@overload
+def solveOpt(
+    matrix: onp.ToFloat2D,
+    rhs: onp.ToFloat1D,
+    *,
+    xpenl: onp.ToFloat1D = ...,
+    xpenq: onp.ToFloat2D = ...,
+    rpenl: onp.ToFloat1D = ...,
+    rpenq: onp.ToFloat1D = ...,
+    xmin: onp.ToFloat1D = ...,
+    xmax: onp.ToFloat1D = ...,
+) -> onp.Array1D[np.float64]: ...
+@overload
+def solveOpt(
+    matrix: Sequence[onp.ToFloat2D],
+    rhs: Sequence[onp.ToFloat1D],
+    *,
+    xpenl: Sequence[onp.ToFloat1D] = ...,
+    xpenq: Sequence[onp.ToFloat2D] = ...,
+    rpenl: Sequence[onp.ToFloat1D] = ...,
+    rpenq: Sequence[onp.ToFloat1D] = ...,
+    xmin: onp.ToFloat1D = ...,
+    xmax: onp.ToFloat1D = ...,
+) -> onp.Array1D[np.float64]: ...
+@overload
 def ghMoments(
-    degree: int, gridv: Any, matrix: Any, ghorder: int, **kwargs: Any
-) -> Any: ...
+    *,
+    degree: Literal[0, 1, 2, 3],
+    gridv: onp.ToFloat1D,
+    matrix: onp.Array1D[np.inexact],
+    ghorder: onp.ToInt,
+    ghbasis: onp.ToFloat2D = ...,
+) -> onp.Array1D[np.float32]: ...
+@overload
+def ghMoments(
+    *,
+    degree: Literal[0, 1, 2, 3],
+    gridv: onp.ToFloat1D,
+    matrix: onp.Array2D[np.inexact],
+    ghorder: onp.ToInt,
+    ghbasis: onp.ToFloat2D = ...,
+) -> onp.Array2D[np.float32]: ...
 
 class setNumThreads:
     def __init__(self, num_threads: int) -> None: ...

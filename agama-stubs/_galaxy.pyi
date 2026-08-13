@@ -5,6 +5,7 @@ import numpy as np
 from optype import numpy as onp
 
 from ._actions import ActionFinder
+from ._orbit import Orbit
 from ._potential import Density, Potential, _AgamaCallable, _ToDensity, _ToPotential
 
 type _ToDistributionFunction = (
@@ -1381,40 +1382,26 @@ class Spline:
         reg: onp.ToInt = ...,
         quintic: onp.ToBool = ...,
     ) -> None: ...
-
-    # __call__
-    # Input is single number:
-    # - conv must be spline if given
-    # - can't be given der or ext
-    @overload
-    def __call__(self, x: float | int, *, conv: Spline = ...) -> None: ...
-    # Input is single number:
-    # - if using der or ext then conv can't be given
     @overload
     def __call__(
-        self, x: float | int, *, der: onp.ToInt = ..., ext: onp.ToFloat = ...
-    ) -> None: ...
-    # Input is array
-    # - conv must be scalar or array with same shape as `x` or `Spline`
+        self, x: onp.ToFloat, /, *, conv: onp.ToFloat | Spline = ...
+    ) -> float: ...
     @overload
     def __call__(
-        self, x: onp.ToFloatND, *, conv: onp.ToFloatND | Spline = ...
-    ) -> None: ...
-    # Input is array
-    # - if using der or ext then conv can't be given
-    @overload
-    def __call__(
-        self, x: onp.ToFloatND, *, der: onp.ToInt = ..., ext: onp.ToFloat = ...
-    ) -> None: ...
-    # Fallback overload
+        self, x: onp.ToFloat, /, *, der: onp.ToInt = ..., ext: onp.ToFloat = ...
+    ) -> float: ...
     @overload
     def __call__(
         self,
-        x: object,
-        der: onp.ToInt,
-        ext: object,
-        conv: object,
-    ) -> None: ...
+        x: onp.ToFloatND,
+        /,
+        *,
+        conv: onp.ToFloat | onp.ToFloatND | Spline = ...,
+    ) -> onp.ArrayND[np.float64]: ...
+    @overload
+    def __call__(
+        self, x: onp.ToFloatND, /, *, der: onp.ToInt = ..., ext: onp.ToFloat = ...
+    ) -> onp.ArrayND[np.float64]: ...
 
     # Overrides
     def __len__(self) -> int: ...
@@ -1485,3 +1472,17 @@ class Target:
         velpsf: onp.ToFloat = ...,
     ) -> None: ...
     # END GENERATED TARGET INIT OVERLOADS
+    @overload
+    def __call__(
+        self,
+        source: Density | GalaxyModel | Orbit | tuple[onp.ToFloat2D, onp.ToFloat1D],
+        /,
+    ) -> onp.Array1D[np.float32]: ...
+    @overload
+    def __call__(
+        self, source: onp.Array1D[np.object_], /
+    ) -> onp.Array2D[np.float32]: ...
+    def __len__(self) -> int: ...
+    def __getitem__(self, index: int) -> str: ...
+    @override
+    def __repr__(self) -> str: ...

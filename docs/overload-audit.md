@@ -21,7 +21,8 @@ All APIs recommended for combinatorial generation are now generated:
 `Potential.eval`, `Potential.projectedEval`, action and DF calls,
 `GalaxyModel.totalMass`, `moments`, `vdf`, `projectedDF`, and `orbit`. The
 ordinary scalar/batch methods below remain candidates for concise handwritten
-overloads rather than Cartesian-product generation.
+overloads rather than Cartesian-product generation. These handwritten overloads
+have now also been implemented.
 
 | Priority | API | Dispatch keys | Recommendation |
 | --- | --- | --- | --- |

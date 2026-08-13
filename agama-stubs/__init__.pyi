@@ -3,9 +3,6 @@ from typing import Final
 from ._actions import ActionFinder as ActionFinder
 from ._actions import ActionMapper as ActionMapper
 from ._functions import (
-    Orbit as Orbit,
-)
-from ._functions import (
     actions as actions,
 )
 from ._functions import (
@@ -68,6 +65,7 @@ from ._galaxy import (
 from ._galaxy import (
     Target as Target,
 )
+from ._orbit import Orbit as Orbit
 from ._potential import Density as Density
 from ._potential import Potential as Potential
 

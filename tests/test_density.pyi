@@ -34,21 +34,20 @@ d = agama.Density(type="plummer", mass=1.0, scaleradius=1.0)
 # Scalar input
 xyz_scalar: tuple[float, float, float]
 rho_scalar = d.density(xyz_scalar)
-# Based on the stub, this returns float | onp.Array1D[np.float64]
-assert_type(rho_scalar, float | onp.Array1D[np.float64])
+assert_type(rho_scalar, float)
 
 # Array input
 xyz_array: onp.Array2D[np.float64]
 rho_array = d.density(xyz_array)
-assert_type(rho_array, float | onp.Array1D[np.float64])
+assert_type(rho_array, onp.Array1D[np.float64])
 
 # projectedDensity
-rho_proj = d.projectedDensity(1.0)
-assert_type(rho_proj, float | onp.Array1D[np.float64])
+rho_proj = d.projectedDensity((1.0, 2.0))
+assert_type(rho_proj, float)
 
-rho_proj_arr_in: onp.Array1D[np.float64]
+rho_proj_arr_in: onp.Array2D[np.float64]
 rho_proj_arr = d.projectedDensity(rho_proj_arr_in)
-assert_type(rho_proj_arr, float | onp.Array1D[np.float64])
+assert_type(rho_proj_arr, onp.Array1D[np.float64])
 
 # --- Properties ---
 

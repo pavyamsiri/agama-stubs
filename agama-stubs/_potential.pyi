@@ -1,5 +1,5 @@
 from collections.abc import Callable, Sequence
-from typing import Any, Literal, overload
+from typing import Literal, overload
 
 import numpy as np
 from optype import numpy as onp
@@ -3207,14 +3207,66 @@ class Density:
         q: onp.ToFloat = ...,
     ) -> None: ...
     # END GENERATED DENSITY INIT OVERLOADS
+    @overload
     def density(
         self,
-        xyz: tuple[float, float, float] | onp.ToJustFloat64_2D,
-        t: float | onp.ToJustFloat64_1D | None = None,
-    ) -> float | onp.Array1D[np.float64]: ...
+        xyz: tuple[onp.ToFloat, onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        t: onp.ToFloat = ...,
+    ) -> float: ...
+    @overload
+    def density(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        z: onp.ToFloat,
+        /,
+        *,
+        t: onp.ToFloat = ...,
+    ) -> float: ...
+    @overload
+    def density(
+        self,
+        xyz: onp.ToFloat2D,
+        /,
+        *,
+        t: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
     def projectedDensity(
-        self, xyz: float | onp.ToJustFloat64_1D
-    ) -> float | onp.Array1D[np.float64]: ...
+        self,
+        xy: tuple[onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        alpha: onp.ToFloat = ...,
+        beta: onp.ToFloat = ...,
+        gamma: onp.ToFloat = ...,
+        t: onp.ToFloat = ...,
+    ) -> float: ...
+    @overload
+    def projectedDensity(
+        self,
+        x: onp.ToFloat,
+        y: onp.ToFloat,
+        /,
+        *,
+        alpha: onp.ToFloat = ...,
+        beta: onp.ToFloat = ...,
+        gamma: onp.ToFloat = ...,
+        t: onp.ToFloat = ...,
+    ) -> float: ...
+    @overload
+    def projectedDensity(
+        self,
+        xy: onp.ToFloat2D,
+        /,
+        *,
+        alpha: onp.ToFloat | onp.ToFloat1D = ...,
+        beta: onp.ToFloat | onp.ToFloat1D = ...,
+        gamma: onp.ToFloat | onp.ToFloat1D = ...,
+        t: onp.ToFloat | onp.ToFloat1D = ...,
+    ) -> onp.Array1D[np.float64]: ...
     def export(self, filename: str) -> None: ...
     def sample(
         self,
@@ -3224,10 +3276,18 @@ class Density:
         kappa: float | None = None,
     ) -> tuple[list[list[float]], list[float]]: ...
     def totalMass(self) -> float: ...
-    def enclosedMass(self, r: float | Sequence[float]) -> float | list[float]: ...
+    @overload
+    def enclosedMass(self, r: onp.ToFloat, /) -> float: ...
+    @overload
+    def enclosedMass(self, r: onp.ToFloat1D, /) -> onp.Array1D[np.float64]: ...
+    @overload
     def principalAxes(
-        self, r: float | onp.ToJustFloat64_1D | None = None
-    ) -> tuple[list[float], list[float]]: ...
+        self, r: onp.ToFloat | None = ..., /
+    ) -> tuple[onp.Array1D[np.float64], onp.Array1D[np.float64]]: ...
+    @overload
+    def principalAxes(
+        self, r: onp.ToFloat1D, /
+    ) -> tuple[onp.Array2D[np.float64], onp.Array2D[np.float64]]: ...
     def name(self) -> str: ...
     def __getitem__(self, index: int) -> Density | Potential: ...
     def __len__(self) -> int: ...
@@ -7399,5 +7459,95 @@ class Potential(Density):
         onp.Array1D[np.float64], onp.Array2D[np.float64], onp.Array2D[np.float64]
     ]: ...
     # END GENERATED POTENTIAL PROJECTED EVAL OVERLOADS
-    def potential(self, *args: Any, **kwargs: Any) -> Any: ...
-    def force(self, *args: Any, **kwargs: Any) -> Any: ...
+    @overload
+    def potential(
+        self,
+        xyz: tuple[onp.ToFloat, onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        t: onp.ToFloat = ...,
+    ) -> float: ...
+    @overload
+    def potential(
+        self, x: onp.ToFloat, y: onp.ToFloat, z: onp.ToFloat, /, *, t: onp.ToFloat = ...
+    ) -> float: ...
+    @overload
+    def potential(
+        self, xyz: onp.ToFloat2D, /, *, t: onp.ToFloat | onp.ToFloat1D = ...
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def force(
+        self,
+        xyz: tuple[onp.ToFloat, onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        t: onp.ToFloat = ...,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def force(
+        self, x: onp.ToFloat, y: onp.ToFloat, z: onp.ToFloat, /, *, t: onp.ToFloat = ...
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def force(
+        self, xyz: onp.ToFloat2D, /, *, t: onp.ToFloat | onp.ToFloat1D = ...
+    ) -> onp.Array2D[np.float64]: ...
+    @overload
+    def forceDeriv(
+        self,
+        xyz: tuple[onp.ToFloat, onp.ToFloat, onp.ToFloat] | onp.Array1D[np.inexact],
+        /,
+        *,
+        t: onp.ToFloat = ...,
+    ) -> tuple[onp.Array1D[np.float64], onp.Array1D[np.float64]]: ...
+    @overload
+    def forceDeriv(
+        self, x: onp.ToFloat, y: onp.ToFloat, z: onp.ToFloat, /, *, t: onp.ToFloat = ...
+    ) -> tuple[onp.Array1D[np.float64], onp.Array1D[np.float64]]: ...
+    @overload
+    def forceDeriv(
+        self, xyz: onp.ToFloat2D, /, *, t: onp.ToFloat | onp.ToFloat1D = ...
+    ) -> tuple[onp.Array2D[np.float64], onp.Array2D[np.float64]]: ...
+    @overload
+    def Rcirc(self, *, L: onp.ToFloat) -> float: ...
+    @overload
+    def Rcirc(self, *, L: onp.ToFloat1D) -> onp.Array1D[np.float64]: ...
+    @overload
+    def Rcirc(self, *, E: onp.ToFloat) -> float: ...
+    @overload
+    def Rcirc(self, *, E: onp.ToFloat1D) -> onp.Array1D[np.float64]: ...
+    @overload
+    def Tcirc(self, value: onp.ToFloat, /) -> float: ...
+    @overload
+    def Tcirc(
+        self,
+        value: tuple[
+            onp.ToFloat, onp.ToFloat, onp.ToFloat, onp.ToFloat, onp.ToFloat, onp.ToFloat
+        ],
+        /,
+    ) -> float: ...
+    @overload
+    def Tcirc(
+        self, value: onp.Array1D[np.inexact], /
+    ) -> float | onp.Array1D[np.float64]: ...
+    @overload
+    def Tcirc(self, value: onp.Array2D[np.inexact], /) -> onp.Array1D[np.float64]: ...
+    @overload
+    def Rmax(self, E: onp.ToFloat, /) -> float: ...
+    @overload
+    def Rmax(self, E: onp.ToFloat1D, /) -> onp.Array1D[np.float64]: ...
+    @overload
+    def Rperiapo(
+        self, E: onp.ToFloat, L: onp.ToFloat, /
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def Rperiapo(
+        self,
+        value: tuple[onp.ToFloat, onp.ToFloat]
+        | tuple[
+            onp.ToFloat, onp.ToFloat, onp.ToFloat, onp.ToFloat, onp.ToFloat, onp.ToFloat
+        ]
+        | onp.Array1D[np.inexact],
+        /,
+    ) -> onp.Array1D[np.float64]: ...
+    @overload
+    def Rperiapo(self, value: onp.ToFloat2D, /) -> onp.Array2D[np.float64]: ...

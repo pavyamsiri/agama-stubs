@@ -9,8 +9,9 @@ in `pyproject.toml`.
 
 `agama-stubs/__init__.pyi` explicitly re-exports the public API. Declarations are
 grouped by concern in `_potential.pyi`, `_actions.pyi`, `_galaxy.pyi`, and
-`_functions.pyi`. Keep `py.typed` in the package directory so built wheels are
-recognized as stub-only packages.
+`_functions.pyi`; the nominal runtime-only `Orbit` class lives in `_orbit.pyi`
+to avoid circular imports. Keep `py.typed` in the package directory so built
+wheels are recognized as stub-only packages.
 
 ## Development workflow
 
