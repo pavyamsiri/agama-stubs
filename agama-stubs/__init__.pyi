@@ -68,6 +68,10 @@ from ._galaxy import (
 from ._orbit import Orbit as Orbit
 from ._potential import Density as Density
 from ._potential import Potential as Potential
+from .nemofile import NemoFile as NemoFile
+from .pygama import CubicSpline as CubicSpline
+from .pygama import GalaPotential as GalaPotential
+from .pygama import GalpyPotential as GalpyPotential
 
 __version__: Final[str] = "1.0"
 G: Final[float] = 1.0
