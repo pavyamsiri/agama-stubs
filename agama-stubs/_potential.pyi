@@ -1,5 +1,5 @@
 from collections.abc import Callable, Sequence
-from typing import Literal, overload
+from typing import Any, Literal, overload
 
 import numpy as np
 from optype import numpy as onp
@@ -23,6 +23,9 @@ type _Symmetry = Literal[
 ]
 type _ToPotential = Potential | _AgamaCallable
 type _ToDensity = Density | _AgamaCallable
+
+# NOTE: `Any` is necessary as AGAMA can take in a dictionary of parameters that can be float, str, int etc.
+type _PotentialParams = dict[str, Any]
 
 class Density:
     # BEGIN GENERATED DENSITY INIT OVERLOADS
@@ -3314,9 +3317,9 @@ class Potential(Density):
     @overload
     def __init__(
         self,
-        component: _ToPotential | dict[str, object],
+        component: _ToPotential | _PotentialParams,
         /,
-        *components: _ToPotential | dict[str, object],
+        *components: _ToPotential | _PotentialParams,
     ) -> None: ...
     @overload
     def __init__(

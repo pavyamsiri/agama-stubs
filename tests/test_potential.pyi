@@ -61,3 +61,25 @@ assert_type(
         onp.Array2D[np.float64],
     ],
 )
+
+# using param dicts of type dict[str, str] to create potential
+component_params_dict_str: list[dict[str, str]] = [
+    {"type": "Plummer", "mass": "1"},
+    {"type": "NFW", "mass": "2"},
+]
+first_str_component, *remaining_str_components = component_params_dict_str
+assert_type(
+    agama.Potential(first_str_component, *remaining_str_components),
+    agama.Potential,
+)
+
+# using param dicts of type dict[str, object] to create potential
+component_params_dict_obj: list[dict[str, object]] = [
+    {"type": "Plummer", "mass": 1.0},
+    {"type": "NFW", "scaleRadius": 2.0},
+]
+first_obj_component, *remaining_obj_components = component_params_dict_obj
+assert_type(
+    agama.Potential(first_obj_component, *remaining_obj_components),
+    agama.Potential,
+)
