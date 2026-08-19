@@ -57,7 +57,7 @@ def density() -> str:
     @overload
     def __init__(self, component: Density, /, *components: Density) -> None: ...
     @overload
-    def __init__(self, density: _AgamaCallable, /, *, symmetry: str) -> None: ..."""
+    def __init__(self, density: _AgamaCallable, /, *, symmetry: _Symmetry) -> None: ..."""
     return "\n".join((prefix, *(render(item) for item in DENSITIES))) + "\n"
 
 

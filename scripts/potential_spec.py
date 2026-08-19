@@ -66,6 +66,7 @@ MODIFIERS = {
     "orientation": "Sequence[float]",
     "rotation": "float | Sequence[float] | str",
     "scale": "Sequence[float] | str",
+    "symmetry": "_Symmetry",
 }
 
 EXPANSION_PARAMETERS = (

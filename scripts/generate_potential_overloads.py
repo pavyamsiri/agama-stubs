@@ -71,7 +71,7 @@ def generate() -> str:
     blocks = [
         "    @overload\n    def __init__(self, filename: str, /) -> None: ...",
         "    @overload\n    def __init__(\n        self,\n        component: _ToPotential | dict[str, object],\n        /,\n        *components: _ToPotential | dict[str, object],\n    ) -> None: ...",
-        "    @overload\n    def __init__(self, potential: _AgamaCallable, /, *, symmetry: str) -> None: ...",
+        "    @overload\n    def __init__(\n        self, potential: _AgamaCallable, /, *, symmetry: _Symmetry\n    ) -> None: ...",
         f"    @overload\n    def __init__(\n        self,\n        *,\n        file: str,\n{modifier_arguments}\n    ) -> None: ...",
         f"    @overload\n    def __init__(\n        self,\n        *,\n        potential: _ToPotential,\n{modifier_arguments}\n    ) -> None: ...",
     ]

@@ -7,6 +7,9 @@ from optype import numpy as onp
 type _AgamaCallable = Callable[
     [onp.Array2D[np.float64]], onp.Array1D[np.float32 | np.float64 | np.bool_]
 ]
+type _Symmetry = Literal[
+    "spherical", "axisymmetric", "triaxial", "bisymmetric", "reflection", "none"
+]
 type _ToPotential = Potential | _AgamaCallable
 type _ToDensity = Density | _AgamaCallable
 
@@ -19,7 +22,7 @@ class Density:
     @overload
     def __init__(self, component: Density, /, *components: Density) -> None: ...
     @overload
-    def __init__(self, density: _AgamaCallable, /, *, symmetry: str) -> None: ...
+    def __init__(self, density: _AgamaCallable, /, *, symmetry: _Symmetry) -> None: ...
     @overload
     def __init__(
         self,
@@ -3305,7 +3308,9 @@ class Potential(Density):
         *components: _ToPotential | dict[str, object],
     ) -> None: ...
     @overload
-    def __init__(self, potential: _AgamaCallable, /, *, symmetry: str) -> None: ...
+    def __init__(
+        self, potential: _AgamaCallable, /, *, symmetry: _Symmetry
+    ) -> None: ...
     @overload
     def __init__(
         self,
@@ -3315,6 +3320,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3325,6 +3331,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3339,6 +3346,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3353,6 +3361,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3367,6 +3376,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3381,6 +3391,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3395,6 +3406,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3409,6 +3421,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3423,6 +3436,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3437,6 +3451,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3450,6 +3465,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3463,6 +3479,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3476,6 +3493,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3489,6 +3507,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3504,6 +3523,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3516,6 +3536,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3528,6 +3549,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3540,6 +3562,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3552,6 +3575,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3567,6 +3591,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3582,6 +3607,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3597,6 +3623,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3612,6 +3639,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3627,6 +3655,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3642,6 +3671,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3657,6 +3687,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3672,6 +3703,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3686,6 +3718,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3700,6 +3733,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3714,6 +3748,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3728,6 +3763,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3742,6 +3778,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3756,6 +3793,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3770,6 +3808,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3784,6 +3823,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3796,6 +3836,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3808,6 +3849,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3821,6 +3863,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3834,6 +3877,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3847,6 +3891,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3860,6 +3905,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3874,6 +3920,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3888,6 +3935,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3901,6 +3949,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3914,6 +3963,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3927,6 +3977,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3940,6 +3991,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3958,6 +4010,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3976,6 +4029,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -3994,6 +4048,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4012,6 +4067,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4030,6 +4086,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4048,6 +4105,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4066,6 +4124,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4084,6 +4143,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4102,6 +4162,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4120,6 +4181,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4138,6 +4200,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4156,6 +4219,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4177,6 +4241,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4198,6 +4263,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4219,6 +4285,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4240,6 +4307,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4261,6 +4329,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4282,6 +4351,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4303,6 +4373,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4324,6 +4395,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4345,6 +4417,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4366,6 +4439,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4387,6 +4461,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4408,6 +4483,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4429,6 +4505,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4450,6 +4527,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4471,6 +4549,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4492,6 +4571,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4513,6 +4593,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4534,6 +4615,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4555,6 +4637,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4576,6 +4659,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4597,6 +4681,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4618,6 +4703,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4639,6 +4725,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4660,6 +4747,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4681,6 +4769,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4702,6 +4791,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4723,6 +4813,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4744,6 +4835,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4765,6 +4857,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4786,6 +4879,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4807,6 +4901,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4828,6 +4923,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4849,6 +4945,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4870,6 +4967,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4891,6 +4989,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4912,6 +5011,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4933,6 +5033,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4954,6 +5055,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4975,6 +5077,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -4996,6 +5099,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5017,6 +5121,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5038,6 +5143,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5059,6 +5165,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5080,6 +5187,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5101,6 +5209,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5122,6 +5231,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5143,6 +5253,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5164,6 +5275,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5185,6 +5297,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5206,6 +5319,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5227,6 +5341,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5248,6 +5363,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5269,6 +5385,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5290,6 +5407,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5311,6 +5429,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5332,6 +5451,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5353,6 +5473,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5374,6 +5495,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5395,6 +5517,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5416,6 +5539,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5437,6 +5561,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5458,6 +5583,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5479,6 +5605,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5500,6 +5627,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5521,6 +5649,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5542,6 +5671,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5563,6 +5693,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5584,6 +5715,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5605,6 +5737,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5626,6 +5759,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5647,6 +5781,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5668,6 +5803,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5689,6 +5825,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5710,6 +5847,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5731,6 +5869,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5752,6 +5891,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5773,6 +5913,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5794,6 +5935,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5815,6 +5957,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5836,6 +5979,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5857,6 +6001,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5878,6 +6023,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5899,6 +6045,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5920,6 +6067,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5941,6 +6089,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5962,6 +6111,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -5983,6 +6133,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6004,6 +6155,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6025,6 +6177,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6046,6 +6199,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6067,6 +6221,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6088,6 +6243,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6109,6 +6265,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6130,6 +6287,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6151,6 +6309,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6172,6 +6331,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6189,6 +6349,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6206,6 +6367,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6223,6 +6385,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6240,6 +6403,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6257,6 +6421,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6274,6 +6439,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6291,6 +6457,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6308,6 +6475,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6325,6 +6493,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6342,6 +6511,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6359,6 +6529,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6376,6 +6547,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6393,6 +6565,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6410,6 +6583,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6427,6 +6601,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6444,6 +6619,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6461,6 +6637,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6478,6 +6655,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6495,6 +6673,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6512,6 +6691,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6529,6 +6709,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6546,6 +6727,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6563,6 +6745,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6580,6 +6763,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6604,6 +6788,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6628,6 +6813,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6652,6 +6838,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6676,6 +6863,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6700,6 +6888,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6724,6 +6913,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6748,6 +6938,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6772,6 +6963,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6796,6 +6988,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6820,6 +7013,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6844,6 +7038,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6868,6 +7063,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6879,6 +7075,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6891,6 +7088,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     @overload
     def __init__(
@@ -6903,6 +7101,7 @@ class Potential(Density):
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
     ) -> None: ...
     # END GENERATED POTENTIAL INIT OVERLOADS
     # BEGIN GENERATED POTENTIAL EVAL OVERLOADS
