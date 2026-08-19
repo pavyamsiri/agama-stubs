@@ -36,6 +36,7 @@ ignore = [".venv"]
 stubPath = "."
 venvPath = "."
 venv = ".venv"
+pythonVersion = "3.13"
 pythonPlatform = "All"
 typeCheckingMode = "strict"
 deprecateTypingAliases = true
