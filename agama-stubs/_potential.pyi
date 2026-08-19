@@ -8,7 +8,18 @@ type _AgamaCallable = Callable[
     [onp.Array2D[np.float64]], onp.Array1D[np.float32 | np.float64 | np.bool_]
 ]
 type _Symmetry = Literal[
-    "spherical", "axisymmetric", "triaxial", "bisymmetric", "reflection", "none"
+    "spherical",
+    "axisymmetric",
+    "triaxial",
+    "bisymmetric",
+    "reflection",
+    "none",
+    "s",
+    "a",
+    "t",
+    "b",
+    "r",
+    "n",
 ]
 type _ToPotential = Potential | _AgamaCallable
 type _ToDensity = Density | _AgamaCallable
