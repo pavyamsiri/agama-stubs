@@ -88,9 +88,10 @@ from ._pygama import (
     symmetricGrid,
     transformCelestialCoords,
 )
-from .nemofile import NemoFile as NemoFile
 from .pygama import GalaPotential as GalaPotential
-from .pygama import GalpyPotential as GalpyPotential
+from ._pygama import (
+    GalpyPotential as GalpyPotential,
+)
 
 __version__: Final[str] = "1.0"
 G: Final[float] = 1.0

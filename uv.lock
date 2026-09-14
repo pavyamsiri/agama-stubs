@@ -20,6 +20,7 @@ version = "1.0.0"
 source = { editable = "." }
 dependencies = [
     { name = "agama" },
+    { name = "galpy-stubs" },
     { name = "optype", extra = ["numpy"] },
 ]
 
@@ -42,7 +43,8 @@ dev = [
 requires-dist = [
     { name = "agama", git = "https://github.com/pavyamsiri/agama.git?branch=uv" },
     { name = "galpy", marker = "extra == 'galpy'", specifier = ">=1.11.0" },
-    { name = "optype", extras = ["numpy"], specifier = ">=0.17.0" },
+    { name = "galpy-stubs", git = "https://github.com/pavyamsiri/galpy-stubs.git" },
+    { name = "optype", extras = ["numpy"], specifier = ">=0.18.0" },
 ]
 provides-extras = ["galpy"]
 
@@ -216,6 +218,15 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/af/dc/be03c589ea8a6ca03c5d29d709b8166cbb31c77e7df55bc5baeaa516028c/galpy-1.12.0-cp314-cp314-macosx_11_0_x86_64.whl", hash = "sha256:d014da8a8315772c5745baa4edd4a061f6a17d8c705f2d5537a4c02508c2e47a", size = 16972091, upload-time = "2026-07-01T18:09:51.966Z" },
     { url = "https://files.pythonhosted.org/packages/b4/3b/16b113f8e449e8266b0487eaaf6f62c0c4ad80f07f7e8b312615dfa5b09b/galpy-1.12.0-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:ac0f091fa9c5d07a760d34958a1ff4a4fa584558aef48ab0ac85ddc7ff51c11c", size = 3168868, upload-time = "2026-07-01T18:09:54.487Z" },
     { url = "https://files.pythonhosted.org/packages/65/95/d9312b34e5a5d9f4d4cb2d027d2ac1434e9305976bcd8e0f0dd06e4c50dd/galpy-1.12.0-cp314-cp314-win_amd64.whl", hash = "sha256:6330dc399cb5a03b5a33d3ea430704d777443049fe5e937b22d14a4a2d0062bb", size = 2600857, upload-time = "2026-07-01T18:09:56.015Z" },
+]
+
+[[package]]
+name = "galpy-stubs"
+version = "1.0.0"
+source = { git = "https://github.com/pavyamsiri/galpy-stubs.git#4264c951dc48b20d21464389e803dc19afada667" }
+dependencies = [
+    { name = "galpy" },
+    { name = "optype", extra = ["numpy"] },
 ]
 
 [[package]]
@@ -409,23 +420,23 @@ wheels = [
 
 [[package]]
 name = "numpy-typing-compat"
-version = "20251206.2.4"
+version = "20260602.2.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "numpy" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/42/5f/29fd5f29b0a5d96e2def96ecba3112fc330ecd16e8c97c2b332563c5e201/numpy_typing_compat-20251206.2.4.tar.gz", hash = "sha256:59882d23aaff054a2536da80564012cdce33487657be4d79c5925bb8705fcabc", size = 5011, upload-time = "2025-12-06T20:02:04.942Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/fc/73/e331473d3db84a8e8883ac07bfd63a8ce9eb7196acbb672bda1f5b8d3294/numpy_typing_compat-20260602.2.4.tar.gz", hash = "sha256:e4eb661f312a7ad5805677967d5879e04fd7b97627fe910121ce7b1f43aa748c", size = 4603, upload-time = "2026-06-02T15:52:38.572Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/63/7c/5c2892e6bc0628a2ccf4e938e1e2db22794657ccb374672d66e20d73839e/numpy_typing_compat-20251206.2.4-py3-none-any.whl", hash = "sha256:a82e723bd20efaa4cf2886709d4264c144f1f2b609bda83d1545113b7e47a5b5", size = 6300, upload-time = "2025-12-06T20:01:57.578Z" },
+    { url = "https://files.pythonhosted.org/packages/f8/a8/94811eedac4cef5ef7df4b24e06715fa371724782e86a4573f5d172c8473/numpy_typing_compat-20260602.2.4-py3-none-any.whl", hash = "sha256:78d33917d5f6921f8d1c549db347a5b8d9768853e36796b08208c81f5b620977", size = 5879, upload-time = "2026-06-02T15:52:33.214Z" },
 ]
 
 [[package]]
 name = "optype"
-version = "0.17.0"
+version = "0.18.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/81/9f/3b13bab05debf685678b8af004e46b8c67c6f98ffa08eaf5d33bcf162c16/optype-0.17.0.tar.gz", hash = "sha256:31351a1e64d9eba7bf67e14deefb286e85c66458db63c67dd5e26dd72e4664e5", size = 53484, upload-time = "2026-03-08T23:03:12.594Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/99/51/51dc9b1009e020f44703933d4d1ee3429c647c026ce7806b37ee2b257998/optype-0.18.0.tar.gz", hash = "sha256:ea10dee61b15ca299ed0d97025d362585c4dfc5481159bb999a1d0d414bbcb04", size = 59967, upload-time = "2026-06-07T22:13:17.534Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/6b/44/dca78187415947d1bb90b2ee2a58e47d9573528331e8dc6196996b53612a/optype-0.17.0-py3-none-any.whl", hash = "sha256:8c2d88ff13149454bcf6eb47502f80d288bc542e7238fcc412ac4d222c439397", size = 65854, upload-time = "2026-03-08T23:03:11.425Z" },
+    { url = "https://files.pythonhosted.org/packages/5b/91/2b064a117cb2593bc3eb04ee994134ca2a6bf2162c92961769947e3258cc/optype-0.18.0-py3-none-any.whl", hash = "sha256:91822ed8516e7a4f225ba53d30f291776c35f31553fb952d7cda98286679c5a6", size = 73410, upload-time = "2026-06-07T22:13:16.324Z" },
 ]
 
 [package.optional-dependencies]

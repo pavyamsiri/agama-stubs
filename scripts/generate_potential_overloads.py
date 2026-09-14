@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the overloads for ``Potential.__init__`` from ``potential_spec``."""
+"""Generate Potential and GalpyPotential constructors from potential_spec."""
 
 from __future__ import annotations
 
@@ -12,6 +12,7 @@ from scripts.potential_spec import MODIFIERS, PARAMETERS, POTENTIALS, PotentialK
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "agama-stubs" / "_potential.pyi"
+GALPY_TARGET = ROOT / "agama-stubs" / "_galpy_support.pyi"
 START = "    # BEGIN GENERATED POTENTIAL INIT OVERLOADS\n"
 END = "    # END GENERATED POTENTIAL INIT OVERLOADS\n"
 
@@ -86,14 +87,32 @@ def generate() -> str:
     return "\n".join(blocks) + "\n"
 
 
-def updated_source(source: str) -> str:
-    before, separator, remainder = source.partition(START)
+def generate_galpy() -> str:
+    """Reuse native constructor branches with the wrapper's normalization option."""
+    source = generate().replace(
+        "    ) -> None: ...",
+        "        normalize: bool | float = False,\n    ) -> None: ...",
+    )
+    source = source.replace(
+        "    def __init__(self, filename: str, /) -> None: ...",
+        "    def __init__(\n        self, filename: str, /, *, normalize: bool | float = False\n    ) -> None: ...",
+    )
+    return source.replace(
+        "    def __init__(self, potential: _AgamaCallable, /, *, symmetry: str) -> None: ...",
+        "    def __init__(\n        self,\n        potential: _AgamaCallable,\n        /,\n        *,\n        symmetry: str,\n        normalize: bool | float = False,\n    ) -> None: ...",
+    )
+
+
+def updated_source(source: str, *, galpy: bool = False) -> str:
+    start = START.replace("POTENTIAL", "GALPY") if galpy else START
+    end = END.replace("POTENTIAL", "GALPY") if galpy else END
+    before, separator, remainder = source.partition(start)
     if not separator:
-        raise RuntimeError(f"missing start marker in {TARGET}")
-    _, separator, after = remainder.partition(END)
+        raise RuntimeError(f"missing start marker: {start.strip()}")
+    _, separator, after = remainder.partition(end)
     if not separator:
-        raise RuntimeError(f"missing end marker in {TARGET}")
-    return before + START + generate() + END + after
+        raise RuntimeError(f"missing end marker: {end.strip()}")
+    return before + start + (generate_galpy() if galpy else generate()) + end + after
 
 
 def main() -> int:
@@ -102,15 +121,16 @@ def main() -> int:
         "--check", action="store_true", help="fail if the generated section is stale"
     )
     args = parser.parse_args(namespace=_Arguments())
-    source = TARGET.read_text()
-    updated = updated_source(source)
-    if args.check:
-        if source != updated:
-            parser.error(
-                f"{TARGET.relative_to(ROOT)} is stale; run {Path(__file__).name}"
-            )
-        return 0
-    _ = TARGET.write_text(updated)
+    for target in (TARGET, GALPY_TARGET):
+        source = target.read_text()
+        updated = updated_source(source, galpy=target == GALPY_TARGET)
+        if args.check:
+            if source != updated:
+                parser.error(
+                    f"{target.relative_to(ROOT)} is stale; run {Path(__file__).name}"
+                )
+        else:
+            _ = target.write_text(updated)
     return 0
 
 

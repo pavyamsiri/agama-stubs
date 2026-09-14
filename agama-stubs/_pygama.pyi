@@ -6,6 +6,7 @@ import optype as op
 from optype import numpy as onp
 
 from ._galaxy import Spline
+from ._galpy_support import GalpyPotential as GalpyPotential
 
 # NOTE: Should be astropy.units.Quantity but that will require a dependency on astropy.
 # As astropy has relatively poor typing support we will not make that a mandatory dependency yet.
@@ -13,6 +14,7 @@ type _Quantity = Any
 
 __all__: list[str] = [
     "CubicSpline",
+    "GalpyPotential",
     "bsplineIntegrals",
     "bsplineInterp",
     "bsplineMatrix",

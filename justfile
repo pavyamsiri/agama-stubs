@@ -1,7 +1,7 @@
 set shell := ["bash", "-cu"]
 
 stubs := "agama-stubs"
-typing_tests := "tests/test_density.pyi tests/test_actionfinder.pyi tests/test_potential.pyi tests/test_constructors.pyi tests/test_results.pyi tests/test_nemofile.pyi tests/test_pygama.pyi"
+typing_tests := "tests/test_density.pyi tests/test_actionfinder.pyi tests/test_potential.pyi tests/test_constructors.pyi tests/test_results.pyi tests/test_nemofile.pyi tests/test_pygama.pyi tests/test_galpy_support.pyi"
 scripts := "scripts"
 sources := stubs + " " + typing_tests + " " + scripts
 python := ".venv/bin/python"
