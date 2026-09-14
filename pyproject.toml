@@ -44,6 +44,7 @@ venv = ".venv"
 pythonVersion = "3.13"
 pythonPlatform = "All"
 typeCheckingMode = "strict"
+pythonVersion = "3.13"
 deprecateTypingAliases = true
 enableReachabilityAnalysis = false
 enableTypeIgnoreComments = false
