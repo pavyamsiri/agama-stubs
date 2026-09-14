@@ -94,13 +94,18 @@ def generate_galpy() -> str:
         "        normalize: bool | float = False,\n    ) -> None: ...",
     )
     source = source.replace(
+        "        self, potential: _AgamaCallable, /, *, symmetry: _Symmetry\n",
+        "        self, potential: _AgamaCallable, /, *, symmetry: _Symmetry,\n",
+    )
+    source = source.replace(
+        "    def __init__(\n        self, potential: _AgamaCallable, /, *, symmetry: _Symmetry,\n        normalize: bool | float = False,\n    ) -> None: ...",
+        "    def __init__(\n        self,\n        potential: _AgamaCallable,\n        /,\n        *,\n        symmetry: _Symmetry,\n        normalize: bool | float = False,\n    ) -> None: ...",
+    )
+    source = source.replace(
         "    def __init__(self, filename: str, /) -> None: ...",
         "    def __init__(\n        self, filename: str, /, *, normalize: bool | float = False\n    ) -> None: ...",
     )
-    return source.replace(
-        "    def __init__(self, potential: _AgamaCallable, /, *, symmetry: str) -> None: ...",
-        "    def __init__(\n        self,\n        potential: _AgamaCallable,\n        /,\n        *,\n        symmetry: str,\n        normalize: bool | float = False,\n    ) -> None: ...",
-    )
+    return source
 
 
 def updated_source(source: str, *, galpy: bool = False) -> str:

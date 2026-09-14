@@ -88,7 +88,6 @@ from ._pygama import (
     symmetricGrid,
     transformCelestialCoords,
 )
-from .pygama import GalaPotential as GalaPotential
 from ._pygama import (
     GalaPotential as GalaPotential,
 )

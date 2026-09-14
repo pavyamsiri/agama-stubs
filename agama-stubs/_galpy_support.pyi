@@ -4,7 +4,14 @@ from typing import Literal, overload
 from galpy.potential.Potential import Potential as _GalpyPotential
 from optype import numpy as onp
 
-from ._potential import Potential, _AgamaCallable, _ToDensity, _ToPotential
+from ._potential import (
+    Potential,
+    _AgamaCallable,
+    _PotentialParams,
+    _Symmetry,
+    _ToDensity,
+    _ToPotential,
+)
 
 __all__: list[str] = ["GalpyPotential"]
 
@@ -27,9 +34,9 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
     @overload
     def __init__(
         self,
-        component: _ToPotential | dict[str, object],
+        component: _ToPotential | _PotentialParams,
         /,
-        *components: _ToPotential | dict[str, object],
+        *components: _ToPotential | _PotentialParams,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -38,7 +45,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         potential: _AgamaCallable,
         /,
         *,
-        symmetry: str,
+        symmetry: _Symmetry,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -50,6 +57,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -61,6 +69,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -76,6 +85,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -91,6 +101,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -106,6 +117,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -121,6 +133,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -136,6 +149,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -151,6 +165,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -166,6 +181,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -181,6 +197,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -195,6 +212,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -209,6 +227,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -223,6 +242,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -237,6 +257,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -253,6 +274,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -266,6 +288,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -279,6 +302,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -292,6 +316,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -305,6 +330,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -321,6 +347,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -337,6 +364,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -353,6 +381,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -369,6 +398,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -385,6 +415,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -401,6 +432,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -417,6 +449,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -433,6 +466,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -448,6 +482,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -463,6 +498,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -478,6 +514,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -493,6 +530,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -508,6 +546,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -523,6 +562,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -538,6 +578,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -553,6 +594,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -566,6 +608,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -579,6 +622,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -593,6 +637,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -607,6 +652,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -621,6 +667,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -635,6 +682,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -650,6 +698,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -665,6 +714,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -679,6 +729,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -693,6 +744,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -707,6 +759,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -721,6 +774,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -740,6 +794,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -759,6 +814,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -778,6 +834,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -797,6 +854,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -816,6 +874,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -835,6 +894,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -854,6 +914,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -873,6 +934,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -892,6 +954,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -911,6 +974,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -930,6 +994,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -949,6 +1014,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -971,6 +1037,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -993,6 +1060,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1015,6 +1083,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1037,6 +1106,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1059,6 +1129,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1081,6 +1152,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1103,6 +1175,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1125,6 +1198,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1147,6 +1221,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1169,6 +1244,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1191,6 +1267,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1213,6 +1290,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1235,6 +1313,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1257,6 +1336,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1279,6 +1359,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1301,6 +1382,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1323,6 +1405,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1345,6 +1428,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1367,6 +1451,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1389,6 +1474,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1411,6 +1497,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1433,6 +1520,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1455,6 +1543,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1477,6 +1566,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1499,6 +1589,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1521,6 +1612,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1543,6 +1635,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1565,6 +1658,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1587,6 +1681,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1609,6 +1704,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1631,6 +1727,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1653,6 +1750,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1675,6 +1773,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1697,6 +1796,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1719,6 +1819,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1741,6 +1842,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1763,6 +1865,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1785,6 +1888,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1807,6 +1911,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1829,6 +1934,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1851,6 +1957,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1873,6 +1980,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1895,6 +2003,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1917,6 +2026,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1939,6 +2049,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1961,6 +2072,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -1983,6 +2095,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2005,6 +2118,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2027,6 +2141,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2049,6 +2164,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2071,6 +2187,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2093,6 +2210,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2115,6 +2233,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2137,6 +2256,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2159,6 +2279,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2181,6 +2302,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2203,6 +2325,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2225,6 +2348,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2247,6 +2371,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2269,6 +2394,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2291,6 +2417,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2313,6 +2440,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2335,6 +2463,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2357,6 +2486,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2379,6 +2509,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2401,6 +2532,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2423,6 +2555,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2445,6 +2578,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2467,6 +2601,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2489,6 +2624,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2511,6 +2647,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2533,6 +2670,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2555,6 +2693,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2577,6 +2716,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2599,6 +2739,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2621,6 +2762,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2643,6 +2785,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2665,6 +2808,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2687,6 +2831,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2709,6 +2854,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2731,6 +2877,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2753,6 +2900,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2775,6 +2923,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2797,6 +2946,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2819,6 +2969,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2841,6 +2992,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2863,6 +3015,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2885,6 +3038,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2907,6 +3061,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2929,6 +3084,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2951,6 +3107,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2973,6 +3130,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -2995,6 +3153,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3017,6 +3176,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3039,6 +3199,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3061,6 +3222,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3079,6 +3241,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3097,6 +3260,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3115,6 +3279,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3133,6 +3298,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3151,6 +3317,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3169,6 +3336,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3187,6 +3355,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3205,6 +3374,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3223,6 +3393,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3241,6 +3412,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3259,6 +3431,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3277,6 +3450,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3295,6 +3469,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3313,6 +3488,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3331,6 +3507,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3349,6 +3526,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3367,6 +3545,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3385,6 +3564,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3403,6 +3583,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3421,6 +3602,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3439,6 +3621,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3457,6 +3640,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3475,6 +3659,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3493,6 +3678,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3518,6 +3704,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3543,6 +3730,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3568,6 +3756,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3593,6 +3782,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3618,6 +3808,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3643,6 +3834,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3668,6 +3860,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3693,6 +3886,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3718,6 +3912,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3743,6 +3938,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3768,6 +3964,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3793,6 +3990,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3805,6 +4003,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3818,6 +4017,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     @overload
@@ -3831,6 +4031,7 @@ class GalpyPotential(_GalpyPotential, Potential):  # ty: ignore[invalid-method-o
         orientation: Sequence[float] = ...,
         rotation: float | Sequence[float] | str = ...,
         scale: Sequence[float] | str = ...,
+        symmetry: _Symmetry = ...,
         normalize: bool | float = False,
     ) -> None: ...
     # END GENERATED GALPY INIT OVERLOADS
