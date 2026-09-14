@@ -90,6 +90,9 @@ from ._pygama import (
 )
 from .pygama import GalaPotential as GalaPotential
 from ._pygama import (
+    GalaPotential as GalaPotential,
+)
+from ._pygama import (
     GalpyPotential as GalpyPotential,
 )
 

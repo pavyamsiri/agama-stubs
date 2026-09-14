@@ -5,6 +5,7 @@ import numpy as np
 import optype as op
 from optype import numpy as onp
 
+from ._gala_support import GalaPotential as GalaPotential
 from ._galaxy import Spline
 from ._galpy_support import GalpyPotential as GalpyPotential
 
@@ -14,6 +15,7 @@ type _Quantity = Any
 
 __all__: list[str] = [
     "CubicSpline",
+    "GalaPotential",
     "GalpyPotential",
     "bsplineIntegrals",
     "bsplineInterp",
