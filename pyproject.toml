@@ -14,7 +14,7 @@ authors = [
 ]
 dependencies = [
     "agama",
-    "optype[numpy]>=0.17.0",
+    "optype[numpy]>=0.18.0",
 ]
 
 classifiers = [

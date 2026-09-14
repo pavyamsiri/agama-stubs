@@ -234,9 +234,9 @@ def getCartesianCoords[S: tuple[Any, ...]](
 ]: ...
 @overload
 def getGalacticFromGalactocentric[S: tuple[Any, ...]](
-    x: onp.ArrayND[np.floating, Any],
-    y: onp.ArrayND[np.floating, Any],
-    z: onp.ArrayND[np.floating, Any],
+    x: onp.ArrayND[np.floating, S],
+    y: onp.ArrayND[np.floating, S],
+    z: onp.ArrayND[np.floating, S],
     vx: None = None,
     vy: None = None,
     vz: None = None,
@@ -248,12 +248,12 @@ def getGalacticFromGalactocentric[S: tuple[Any, ...]](
 ]: ...
 @overload
 def getGalacticFromGalactocentric[S: tuple[Any, ...]](
-    x: onp.ArrayND[np.floating, Any],
-    y: onp.ArrayND[np.floating, Any],
-    z: onp.ArrayND[np.floating, Any],
-    vx: onp.ArrayND[np.floating, Any],
-    vy: onp.ArrayND[np.floating, Any],
-    vz: onp.ArrayND[np.floating, Any],
+    x: onp.ArrayND[np.floating, S],
+    y: onp.ArrayND[np.floating, S],
+    z: onp.ArrayND[np.floating, S],
+    vx: onp.ArrayND[np.floating, S],
+    vy: onp.ArrayND[np.floating, S],
+    vz: onp.ArrayND[np.floating, S],
     galcen_distance: onp.ToFloat = 8.122,
     galcen_v_sun: Sequence[onp.ToFloat] = (12.9, 245.6, 7.78),
     z_sun: onp.ToFloat = 0.0208,
@@ -374,7 +374,7 @@ def ghInterp(
     width: onp.ToFloat,
     coefs: onp.Array1D[np.floating] | None,
     x: onp.Array1D[np.floating],
-) -> np.floating | onp.Array1D[np.floating]: ...
+) -> onp.Array0D[np.floating] | onp.Array1D[np.floating]: ...
 
 # Orbit library
 @overload
