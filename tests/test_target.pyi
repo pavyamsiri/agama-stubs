@@ -1,7 +1,8 @@
-import agama
 from typing import assert_type
-from optype import numpy as onp
+
+import agama
 import numpy as np
+from optype import numpy as onp
 
 # Initialization tests
 gridr = np.array([0.1, 1.0, 10.0])

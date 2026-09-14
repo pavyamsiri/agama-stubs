@@ -6,9 +6,6 @@ from ._functions import (
     actions as actions,
 )
 from ._functions import (
-    getUnits as getUnits,
-)
-from ._functions import (
     ghMoments as ghMoments,
 )
 from ._functions import (
@@ -28,9 +25,6 @@ from ._functions import (
 )
 from ._functions import (
     setRandomSeed as setRandomSeed,
-)
-from ._functions import (
-    setUnits as setUnits,
 )
 from ._functions import (
     solveOpt as solveOpt,
@@ -68,8 +62,31 @@ from ._galaxy import (
 from ._orbit import Orbit as Orbit
 from ._potential import Density as Density
 from ._potential import Potential as Potential
+from ._pygama import (
+    CubicSpline,
+    bsplineIntegrals,
+    bsplineInterp,
+    bsplineMatrix,
+    fromGalactictoICRS,
+    fromICRStoGalactic,
+    getCartesianCoords,
+    getCelestialCoords,
+    getGalacticFromGalactocentric,
+    getGalactocentricFromGalactic,
+    getIntrinsicShape,
+    getProjectedEllipse,
+    getUnits,
+    getViewingAngles,
+    ghInterp,
+    makeCelestialRotationMatrix,
+    makeRotationMatrix,
+    nonuniformGrid,
+    sampleOrbitLibrary,
+    setUnits,
+    symmetricGrid,
+    transformCelestialCoords,
+)
 from .nemofile import NemoFile as NemoFile
-from .pygama import CubicSpline as CubicSpline
 from .pygama import GalaPotential as GalaPotential
 from .pygama import GalpyPotential as GalpyPotential
 

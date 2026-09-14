@@ -9,7 +9,7 @@ resolution-markers = [
 [[package]]
 name = "agama"
 version = "1.0"
-source = { git = "https://github.com/pavyamsiri/agama.git?branch=uv#219ab990b5f315aa97745566800bdbae30a16fdf" }
+source = { git = "https://github.com/pavyamsiri/agama.git?branch=uv#fe5732668afd8e9f9e6238130bb41b9b31f13e65" }
 dependencies = [
     { name = "numpy" },
 ]
