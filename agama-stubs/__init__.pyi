@@ -59,6 +59,7 @@ from ._galaxy import (
 from ._galaxy import (
     Target as Target,
 )
+from ._nemofile import NemoFile as NemoFile
 from ._orbit import Orbit as Orbit
 from ._potential import Density as Density
 from ._potential import Potential as Potential
