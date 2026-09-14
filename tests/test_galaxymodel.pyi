@@ -1,7 +1,8 @@
-import agama
 from typing import assert_type
-from optype import numpy as onp
+
+import agama
 import numpy as np
+from optype import numpy as onp
 
 gm: agama.GalaxyModel
 point: onp.Array1D[np.float64]
